@@ -448,8 +448,8 @@ GameObject:
   - component: {fileID: 959975429}
   - component: {fileID: 959975428}
   m_Layer: 0
-  m_Name: Witch
-  m_TagString: Untagged
+  m_Name: Player
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -466,7 +466,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9cfa8d8edecaf74d983b25ddd622edd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeedHorizontal: 3
 --- !u!212 &959975429
 SpriteRenderer:
   m_ObjectHideFlags: 0
