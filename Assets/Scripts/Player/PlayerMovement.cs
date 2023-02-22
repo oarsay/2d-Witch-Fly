@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -32,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
         _camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
 
-    void Update()
+    private void Update()
     {
         CalculateSpeedBasedOnHeight();
         ReadUserInput();
@@ -48,9 +47,9 @@ public class PlayerMovement : MonoBehaviour
         Vector3 playerScreenPos = _camera.WorldToScreenPoint(transform.position);
         //And normalize it
         float heightRatio = playerScreenPos.y / Screen.height;
-        
+
         //Use general formula for calculating the new speed
-        _currentMoveSpeedHorizontal = _baseMoveSpeedHorizontal + (_bonusSpeedMultiplier * heightRatio); 
+        _currentMoveSpeedHorizontal = _baseMoveSpeedHorizontal + (_bonusSpeedMultiplier * heightRatio);
     }
     private void ReadUserInput()
     {
@@ -65,12 +64,11 @@ public class PlayerMovement : MonoBehaviour
         if (IsOutOfHorizontalBoundary())
         {
             ChangeDirection(Direction.Horizontal);
-            
         }
         else
         {
             Vector3 moveAmount = new(_currentMoveSpeedHorizontal, 0f, 0f);
-            if(_directionHorizontal == Direction.Right)
+            if (_directionHorizontal == Direction.Right)
             {
                 transform.position += (moveAmount * Time.deltaTime);
             }
@@ -78,22 +76,22 @@ public class PlayerMovement : MonoBehaviour
             {
                 transform.position -= (moveAmount * Time.deltaTime);
             }
-            else throw new Exception($"Unknown direction type: {_directionHorizontal}!");
+            else ExceptionHandler.Throw(_directionHorizontal);
         }
 
         // Move vertical
         if (!IsOutOfVerticalBoundary())
         {
             Vector3 moveAmount = new(0f, _moveSpeedVertical, 0f);
-            if(_directionVertical == Direction.Up)
+            if (_directionVertical == Direction.Up)
             {
                 transform.position += (moveAmount * Time.deltaTime);
             }
-            else if(_directionVertical == Direction.Down)
+            else if (_directionVertical == Direction.Down)
             {
                 transform.position -= (moveAmount * Time.deltaTime);
             }
-            else throw new Exception($"Unknown direction type: {_directionVertical}!");
+            else ExceptionHandler.Throw(_directionVertical);
         }
     }
     private bool IsOutOfHorizontalBoundary()
@@ -110,7 +108,6 @@ public class PlayerMovement : MonoBehaviour
 
         return false;
     }
-
     private bool IsOutOfVerticalBoundary()
     {
         // If it is diving and out of bottom boundary
@@ -120,10 +117,9 @@ public class PlayerMovement : MonoBehaviour
 
         return false;
     }
-
     private void ChangeDirection(Direction direction)
     {
-        switch(direction)
+        switch (direction)
         {
             case Direction.Horizontal:
                 transform.Rotate(Vector3.up, 180);
@@ -133,9 +129,8 @@ public class PlayerMovement : MonoBehaviour
                 _directionVertical = (_directionVertical == Direction.Up) ? Direction.Down : Direction.Up;
                 break;
             default:
-                throw new Exception($"Unknown direction type: {direction}!");
+                ExceptionHandler.Throw(direction);
+                break;
         }
     }
-
-    
 }

@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    private float _followSpeed = 4f;
+    private readonly float _followSpeed = 4f;
     private Transform _target;
 
     private void Awake()
