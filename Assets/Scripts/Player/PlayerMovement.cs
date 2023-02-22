@@ -2,10 +2,14 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private Camera _camera;
+
     //************* HORIZONTAL MOVEMENT *************
     private readonly float _screenBoundaryHorizontal = 16f; //Witch patrols between -16 and +16 on the X-axis
-    private float _moveSpeedHorizontal = 3f;
-    private bool DirectionHorizontal => (_moveSpeedHorizontal > 0); //false for left, true for right
+    private readonly float _baseMoveSpeedHorizontal = 2f;
+    private readonly float _bonusSpeedMultiplier = 3f;
+    private float _currentMoveSpeedHorizontal;
+    private bool DirectionHorizontal => (_currentMoveSpeedHorizontal > 0); //false for left, true for right
 
     //************* VERTICAL MOVEMENT *************
     private readonly float _screenBoundaryVerticalUpper = 4f; //Witch can move between -2 and +4 on the Y-axis
@@ -13,10 +17,42 @@ public class PlayerMovement : MonoBehaviour
     private float _moveSpeedVertical = 2f;
     private bool IsDiving => (_moveSpeedVertical < 0); //false for rising, true for diving
 
+    private void Awake()
+    {
+        _camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+    }
+
     void Update()
     {
+        CalculateSpeedBasedOnHeight();
         ReadUserInput();
         Move();
+    }
+
+    private void CalculateSpeedBasedOnHeight()
+    {
+        //GENERAL FORMULA
+        //Move speed = Base speed + (bonusMultiplier x heightRatio[0-1])
+
+        //Get player's y position
+        Vector3 playerScreenPos = _camera.WorldToScreenPoint(transform.position);
+        //And normalize it
+        float heightRatio = playerScreenPos.y / Screen.height;
+        
+        //Use general formula for calculating the new speed
+        float newMoveSpeed = _baseMoveSpeedHorizontal + (_bonusSpeedMultiplier * heightRatio);
+
+        //Player's speed value contains direction information with its sign
+        //Before assigning the new move speed, you need to check its sign/direction
+        if(DirectionHorizontal)
+        {
+            _currentMoveSpeedHorizontal = newMoveSpeed;
+        }
+        else
+        {
+            _currentMoveSpeedHorizontal = -newMoveSpeed;
+        }
+        
     }
     private void ReadUserInput()
     {
@@ -30,11 +66,11 @@ public class PlayerMovement : MonoBehaviour
         // Move horizontal
         if (IsOutOfHorizontalBoundary())
         {
-            ChangeDirection(ref _moveSpeedHorizontal);
+            ChangeDirection(ref _currentMoveSpeedHorizontal);
         }
         else
         {
-            Vector3 moveAmount = new(_moveSpeedHorizontal, 0f, 0f);
+            Vector3 moveAmount = new(_currentMoveSpeedHorizontal, 0f, 0f);
             transform.position += (moveAmount * Time.deltaTime);
         }
 
