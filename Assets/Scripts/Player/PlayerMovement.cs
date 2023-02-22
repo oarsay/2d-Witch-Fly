@@ -1,21 +1,31 @@
+using System;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     private Camera _camera;
+    private enum Direction
+    {
+        Horizontal,
+        Vertical,
+        Right,
+        Left,
+        Up,
+        Down
+    }
 
     //************* HORIZONTAL MOVEMENT *************
     private readonly float _screenBoundaryHorizontal = 16f; //Witch patrols between -16 and +16 on the X-axis
     private readonly float _baseMoveSpeedHorizontal = 2f;
     private readonly float _bonusSpeedMultiplier = 3f;
     private float _currentMoveSpeedHorizontal;
-    private bool DirectionHorizontal => (_currentMoveSpeedHorizontal > 0); //false for left, true for right
+    private Direction _directionHorizontal = Direction.Left;
 
     //************* VERTICAL MOVEMENT *************
     private readonly float _screenBoundaryVerticalUpper = 4f; //Witch can move between -2 and +4 on the Y-axis
     private readonly float _screenBoundaryVerticalBottom = -2f;
     private float _moveSpeedVertical = 2f;
-    private bool IsDiving => (_moveSpeedVertical < 0); //false for rising, true for diving
+    private Direction _directionVertical = Direction.Up;
 
     private void Awake()
     {
@@ -40,25 +50,13 @@ public class PlayerMovement : MonoBehaviour
         float heightRatio = playerScreenPos.y / Screen.height;
         
         //Use general formula for calculating the new speed
-        float newMoveSpeed = _baseMoveSpeedHorizontal + (_bonusSpeedMultiplier * heightRatio);
-
-        //Player's speed value contains direction information with its sign
-        //Before assigning the new move speed, you need to check its sign/direction
-        if(DirectionHorizontal)
-        {
-            _currentMoveSpeedHorizontal = newMoveSpeed;
-        }
-        else
-        {
-            _currentMoveSpeedHorizontal = -newMoveSpeed;
-        }
-        
+        _currentMoveSpeedHorizontal = _baseMoveSpeedHorizontal + (_bonusSpeedMultiplier * heightRatio); 
     }
     private void ReadUserInput()
     {
         if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonUp(0))
         {
-            ChangeDirection(ref _moveSpeedVertical);
+            ChangeDirection(Direction.Vertical);
         }
     }
     private void Move()
@@ -66,19 +64,36 @@ public class PlayerMovement : MonoBehaviour
         // Move horizontal
         if (IsOutOfHorizontalBoundary())
         {
-            ChangeDirection(ref _currentMoveSpeedHorizontal);
+            ChangeDirection(Direction.Horizontal);
+            
         }
         else
         {
             Vector3 moveAmount = new(_currentMoveSpeedHorizontal, 0f, 0f);
-            transform.position += (moveAmount * Time.deltaTime);
+            if(_directionHorizontal == Direction.Right)
+            {
+                transform.position += (moveAmount * Time.deltaTime);
+            }
+            else if (_directionHorizontal == Direction.Left)
+            {
+                transform.position -= (moveAmount * Time.deltaTime);
+            }
+            else throw new Exception($"Unknown direction type: {_directionHorizontal}!");
         }
 
         // Move vertical
         if (!IsOutOfVerticalBoundary())
         {
             Vector3 moveAmount = new(0f, _moveSpeedVertical, 0f);
-            transform.position += (moveAmount * Time.deltaTime);
+            if(_directionVertical == Direction.Up)
+            {
+                transform.position += (moveAmount * Time.deltaTime);
+            }
+            else if(_directionVertical == Direction.Down)
+            {
+                transform.position -= (moveAmount * Time.deltaTime);
+            }
+            else throw new Exception($"Unknown direction type: {_directionVertical}!");
         }
     }
     private bool IsOutOfHorizontalBoundary()
@@ -89,9 +104,9 @@ public class PlayerMovement : MonoBehaviour
         // that the witch reached the boundary and it will change witch's direction continuously.
 
         // If it is moving to the left and out of left boundary
-        if ((transform.position.x < -_screenBoundaryHorizontal) && !DirectionHorizontal) return true;
+        if ((transform.position.x < -_screenBoundaryHorizontal) && _directionHorizontal == Direction.Left) return true;
         // If it is moving to the right and out of right boundary
-        if ((transform.position.x > _screenBoundaryHorizontal) && DirectionHorizontal) return true;
+        if ((transform.position.x > _screenBoundaryHorizontal) && _directionHorizontal == Direction.Right) return true;
 
         return false;
     }
@@ -99,16 +114,27 @@ public class PlayerMovement : MonoBehaviour
     private bool IsOutOfVerticalBoundary()
     {
         // If it is diving and out of bottom boundary
-        if ((transform.position.y < _screenBoundaryVerticalBottom) && IsDiving) return true;
+        if ((transform.position.y < _screenBoundaryVerticalBottom) && _directionVertical == Direction.Down) return true;
         // If it is rising and out of upper boundary
-        if ((transform.position.y > _screenBoundaryVerticalUpper) && !IsDiving) return true;
+        if ((transform.position.y > _screenBoundaryVerticalUpper) && _directionVertical == Direction.Up) return true;
 
         return false;
     }
 
-    private void ChangeDirection(ref float speed)
+    private void ChangeDirection(Direction direction)
     {
-        speed *= -1;
+        switch(direction)
+        {
+            case Direction.Horizontal:
+                transform.Rotate(Vector3.up, 180);
+                _directionHorizontal = (_directionHorizontal == Direction.Left) ? Direction.Right : Direction.Left;
+                break;
+            case Direction.Vertical:
+                _directionVertical = (_directionVertical == Direction.Up) ? Direction.Down : Direction.Up;
+                break;
+            default:
+                throw new Exception($"Unknown direction type: {direction}!");
+        }
     }
 
     
