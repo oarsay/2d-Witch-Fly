@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    private readonly float _followSpeed = 4f;
     private Transform _target;
+    private readonly float _followSpeed = 2f;
 
     private void Awake()
     {
-        _target = GameObject.FindGameObjectWithTag("Player").transform;
+        _target = GameObject.FindGameObjectWithTag("CameraTarget").transform;
     }
     void Update()
     {

@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     //************* VERTICAL MOVEMENT *************
     private readonly float _screenBoundaryVerticalUpper = 4f; //Witch can move between -2 and +4 on the Y-axis
     private readonly float _screenBoundaryVerticalBottom = -2f;
-    private float _moveSpeedVertical = 2f;
+    private float _moveSpeedVertical = 3f;
     private Direction _directionVertical = Direction.Up;
 
     private void Awake()
