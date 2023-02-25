@@ -39,8 +39,8 @@ public class SpawnManager : MonoBehaviour
 
     private void SelectRandomChildPrefab()
     {
-        //EDIT
-        _childPrefab = _childrenPrefabs[0];
+        int childPrefabIndex = Random.Range(0, _childrenPrefabs.Length);
+        _childPrefab = _childrenPrefabs[childPrefabIndex];
     }
 
     private void InitChildrenParentGameObject()
