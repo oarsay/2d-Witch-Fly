@@ -3,7 +3,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private Camera _camera;
-    private enum Direction
+    [SerializeField] private GameEvent _gameEventPlayerOnBoundary;
+    public enum Direction
     {
         Horizontal,
         Vertical,
@@ -19,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     private readonly float _bonusSpeedMultiplier = 3f;
     private float _currentMoveSpeedHorizontal;
     private Direction _directionHorizontal = Direction.Left;
+    public Direction DirectionHorizontal { get { return _directionHorizontal; } }
 
     //************* VERTICAL MOVEMENT *************
     private readonly float _screenBoundaryVerticalUpper = 4f; //Witch can move between -2 and +4 on the Y-axis
@@ -64,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
         if (IsOutOfHorizontalBoundary())
         {
             ChangeDirection(Direction.Horizontal);
+            _gameEventPlayerOnBoundary.TriggerEvent();
         }
         else
         {

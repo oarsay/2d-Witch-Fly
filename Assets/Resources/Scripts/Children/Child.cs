@@ -20,6 +20,9 @@ public class Child : MonoBehaviour
         Child.numberOfChildren++;
         this._moveSpeed = GenerateRandomMoveSpeed();
         this.IsHiding = false;
+
+        // EDIT
+        Destroy(gameObject, Random.Range(5, 15));
     }
 
     private void Update()
@@ -30,6 +33,11 @@ public class Child : MonoBehaviour
     private void Move()
     {
 
+    }
+
+    private void OnDestroy()
+    {
+        Child.numberOfChildren--;
     }
 
     private float GenerateRandomMoveSpeed()
