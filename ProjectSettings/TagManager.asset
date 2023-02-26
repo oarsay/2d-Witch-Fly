@@ -8,6 +8,8 @@ TagManager:
   - Child
   - Children
   - SpawnManager
+  - WalkableArea
+  - BoundsManager
   layers:
   - Default
   - TransparentFX

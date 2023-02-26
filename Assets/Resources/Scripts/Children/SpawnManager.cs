@@ -7,12 +7,9 @@ public class SpawnManager : MonoBehaviour
     private static int _maxChildrenNumber = 5;
 
     //Chosen position and child model for the next instantiation
-    private static Vector3 _spawnPosition;
+    private static float _spawnPositionX;
+    private static float _spawnPositionY = -3.4696f;
     private static GameObject _childPrefab;
-    private static Vector3 _leftSpawnAreaLeftBoundary;
-    private static Vector3 _leftSpawnAreaRightBoundary;
-    private static Vector3 _rightSpawnAreaLeftBoundary;
-    private static Vector3 _rightSpawnAreaRightBoundary;
 
     //"Children" gameobject on the scene, parent (container) object for all children
     private static Transform _childrenParentTransform;
@@ -22,18 +19,14 @@ public class SpawnManager : MonoBehaviour
     private void Awake()
     {
         _playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
-        InitSpawnAreaBoundaries();
         InitChildrenParentGameObject();
         LoadChildrenPrefabs();
     }
-    private void InitSpawnAreaBoundaries()
+
+    private void Start()
     {
-        var leftArea = transform.Find("SpawnAreaLeft").GetComponent<SpriteRenderer>();
-        var rightArea = transform.Find("SpawnAreaRight").GetComponent<SpriteRenderer>();
-        _leftSpawnAreaLeftBoundary = leftArea.bounds.min;
-        _leftSpawnAreaRightBoundary = leftArea.bounds.max;
-        _rightSpawnAreaLeftBoundary = rightArea.bounds.min;
-        _rightSpawnAreaRightBoundary = rightArea.bounds.max;
+        //EDIT
+        SpawnNewChildren();
     }
     private void InitChildrenParentGameObject()
     {
@@ -66,30 +59,29 @@ public class SpawnManager : MonoBehaviour
     }
     private bool IsSpawnNeeded()
     {
-        return Child.numberOfChildren < SpawnManager._maxChildrenNumber;
+        return ChildManager.numberOfChildren < SpawnManager._maxChildrenNumber;
     }
     private void SpawnAChild()
     {
         SelectRandomChildPrefab();
-        GenerateSpawnPosition();
-        Instantiate(_childPrefab, _spawnPosition, Quaternion.identity, _childrenParentTransform);
+        GenerateSpawnPositionX();
+        Vector3 spawnPos = new(_spawnPositionX, _spawnPositionY, 0);
+        Instantiate(_childPrefab, spawnPos, Quaternion.identity, _childrenParentTransform);
     }
     private void SelectRandomChildPrefab()
     {
         int childPrefabIndex = Random.Range(0, _childrenPrefabs.Length);
         _childPrefab = _childrenPrefabs[childPrefabIndex];
     }
-    private void GenerateSpawnPosition()
+    private void GenerateSpawnPositionX()
     {
         if (_playerMovement.DirectionHorizontal == PlayerMovement.Direction.Right)
         {
-            float randomPointInSpawnArea = Random.Range(_rightSpawnAreaLeftBoundary.x, _rightSpawnAreaRightBoundary.x);
-            _spawnPosition = new Vector3(randomPointInSpawnArea, _rightSpawnAreaLeftBoundary.y, 0);
+            _spawnPositionX = Random.Range(BoundsManager.rightSpawnAreaLeftBoundary, BoundsManager.rightSpawnAreaRightBoundary);
         }
         else if (_playerMovement.DirectionHorizontal == PlayerMovement.Direction.Left)
         {
-            float randomPointInSpawnArea = Random.Range(_leftSpawnAreaLeftBoundary.x, _leftSpawnAreaRightBoundary.x);
-            _spawnPosition = new Vector3(randomPointInSpawnArea, _leftSpawnAreaLeftBoundary.y, 0);
+            _spawnPositionX = Random.Range(BoundsManager.leftSpawnAreaLeftBoundary, BoundsManager.leftSpawnAreaRightBoundary);
         }
         else
         {

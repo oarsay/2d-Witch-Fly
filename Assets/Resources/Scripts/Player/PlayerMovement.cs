@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     //************* HORIZONTAL MOVEMENT *************
-    private readonly float _screenBoundaryHorizontal = 16f; //Witch patrols between -16 and +16 on the X-axis
+    private float _screenBoundaryHorizontal; //Witch patrols between -boundary and +boundary on the X-axis
     private readonly float _baseMoveSpeedHorizontal = 2f;
     private readonly float _bonusSpeedMultiplier = 3f;
     private float _currentMoveSpeedHorizontal;
@@ -31,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         _camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        _screenBoundaryHorizontal = Mathf.Abs(BoundsManager.walkableAreaRightBoundary);
     }
 
     private void Update()
