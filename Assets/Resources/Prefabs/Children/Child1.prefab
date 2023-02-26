@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 2786306545753074119}
   - component: {fileID: 2523939810285021548}
   - component: {fileID: 7152537087045422123}
+  - component: {fileID: 6226096537146662198}
   - component: {fileID: 3308713933785611564}
   - component: {fileID: 8033864857926386428}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Child1
   m_TagString: Child
   m_Icon: {fileID: 0}
@@ -99,6 +100,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03dc2b67c37411940b2ced6e7522e613, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _childMovement: {fileID: 0}
+  state: 0
+--- !u!114 &6226096537146662198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5531313900110581344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11f67a7ea7836dd46a49e4b220a0ea18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  childDirection: 0
 --- !u!61 &3308713933785611564
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -65,7 +65,7 @@ public class SpawnManager : MonoBehaviour
     {
         SelectRandomChildPrefab();
         GenerateSpawnPositionX();
-        Vector3 spawnPos = new(_spawnPositionX, _spawnPositionY, 0);
+        Vector3 spawnPos = new(_spawnPositionX, _spawnPositionY, -1);
         Instantiate(_childPrefab, spawnPos, Quaternion.identity, _childrenParentTransform);
     }
     private void SelectRandomChildPrefab()

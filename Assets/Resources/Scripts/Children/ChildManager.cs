@@ -12,10 +12,10 @@ public enum ChildState
 }
 public class ChildManager : MonoBehaviour
 {
-    public ChildMovement _childMovement;
+    [HideInInspector] public ChildMovement _childMovement;
 
     public static int numberOfChildren = 0;
-    public ChildState state;
+    [HideInInspector] public ChildState state;
 
     public void Awake()
     {
