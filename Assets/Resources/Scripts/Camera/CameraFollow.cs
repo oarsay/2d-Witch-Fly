@@ -9,7 +9,7 @@ public class CameraFollow : MonoBehaviour
     {
         _target = GameObject.FindGameObjectWithTag("CameraTarget").transform;
     }
-    void Update()
+    void LateUpdate()
     {
         Vector3 targetPosition = new(_target.position.x, transform.position.y, -10f);
         transform.position = Vector3.Slerp(transform.position, targetPosition, _followSpeed * Time.deltaTime);

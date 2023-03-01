@@ -4,7 +4,7 @@ public class SpawnManager : MonoBehaviour
 {
     //All children models (will be loaded from Resources folder)
     private static GameObject[] _childrenPrefabs;
-    private static int _maxChildrenNumber = 5;
+    private static int _maxChildrenNumber = 1;
 
     //Chosen position and child model for the next instantiation
     private static float _spawnPositionX;

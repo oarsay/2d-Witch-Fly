@@ -10,11 +10,12 @@ TagManager:
   - SpawnManager
   - WalkableArea
   - BoundsManager
+  - Hook
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - Children

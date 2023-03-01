@@ -16,15 +16,15 @@ public class PlayerMovement : MonoBehaviour
 
     //************* HORIZONTAL MOVEMENT *************
     private float _screenBoundaryHorizontal; //Witch patrols between -boundary and +boundary on the X-axis
-    private readonly float _baseMoveSpeedHorizontal = 2f;
-    private readonly float _bonusSpeedMultiplier = 3f;
+    private readonly float _baseMoveSpeedHorizontal = 1f;
+    private readonly float _bonusSpeedMultiplier = 5f;
     private float _currentMoveSpeedHorizontal;
     private Direction _directionHorizontal = Direction.Left;
     public Direction DirectionHorizontal { get { return _directionHorizontal; } }
 
     //************* VERTICAL MOVEMENT *************
-    private readonly float _screenBoundaryVerticalUpper = 4f; //Witch can move between -2 and +4 on the Y-axis
-    private readonly float _screenBoundaryVerticalBottom = -2f;
+    private readonly float _screenBoundaryVerticalUpper = 4f; //Witch can move between -3.2 and +4 on the Y-axis
+    private readonly float _screenBoundaryVerticalBottom = -3.2f;
     private float _moveSpeedVertical = 3f;
     private Direction _directionVertical = Direction.Up;
 

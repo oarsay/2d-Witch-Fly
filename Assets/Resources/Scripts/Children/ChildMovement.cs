@@ -63,14 +63,16 @@ public class ChildMovement : MonoBehaviour
         if(_targetPositionX < transform.position.x)
         {
             childDirection = ChildDirection.Left;
+            transform.rotation = Quaternion.Euler(new(0,0,0));
         }
         else if(_targetPositionX > transform.position.x)
         {
             childDirection = ChildDirection.Right;
+            transform.rotation = Quaternion.Euler(new(0, 180, 0));
         }
         else
         {
-            //Debug.Log("The child is on the target!");
+            //Debug.Log("The child overlays with the target!");
         }
     }
 
