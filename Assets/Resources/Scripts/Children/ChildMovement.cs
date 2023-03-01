@@ -8,10 +8,13 @@ public enum ChildDirection
 public class ChildMovement : MonoBehaviour
 {
     private ChildManager _childManager;
+    private Transform _cauldronDeepPoint;
 
     private static readonly float _minWalkSpeed = 1f;
     private static readonly float _maxWalkSpeed = 3f;
     private static readonly float _fleeSpeedBonus = 1.5f;
+    private static readonly float _fallSpeed = 3f;
+    private static readonly float _fallRotationSpeed = 5f;
 
     [HideInInspector] public ChildDirection childDirection;
     private float _walkSpeed;
@@ -19,6 +22,7 @@ public class ChildMovement : MonoBehaviour
     private float _targetPositionX;//Random target point on X-axis to walk or flee.
     private void Awake()
     {
+        _cauldronDeepPoint = GameObject.FindGameObjectWithTag("CauldronDeepPoint").transform;
         _childManager = GetComponent<ChildManager>();
         _walkSpeed = Random.Range(_minWalkSpeed, _maxWalkSpeed);
         _fleeSpeed = _walkSpeed + _fleeSpeedBonus;
@@ -52,7 +56,9 @@ public class ChildMovement : MonoBehaviour
 
             case ChildState.Hide: break;
             case ChildState.Hunted: break;
-            case ChildState.Fall: break;
+            case ChildState.Fall:
+                OnFall();
+                break;
             case ChildState.Die: break;
         }
     }
@@ -102,6 +108,13 @@ public class ChildMovement : MonoBehaviour
                 ExceptionHandler.Throw(childDirection);
                 break;
         }
+    }
+
+    private void OnFall()
+    {
+        Vector3 fallDirection = (_cauldronDeepPoint.position - transform.position).normalized;
+        transform.position += _fallSpeed * Time.deltaTime * fallDirection;
+        transform.Rotate(Vector3.forward, _fallRotationSpeed);
     }
 
     void OnDrawGizmos()

@@ -11,6 +11,7 @@ TagManager:
   - WalkableArea
   - BoundsManager
   - Hook
+  - CauldronDeepPoint
   layers:
   - Default
   - TransparentFX

@@ -14,6 +14,7 @@ public class ChildManager : MonoBehaviour
 {
     private Transform _witch;
     private Transform _hook;
+    private PlayerManager _witchManager;
     private Rigidbody2D _rigidbody;
     [HideInInspector] public ChildMovement _childMovement;
     [SerializeField] private GameEvent _gameEventOnChildFlee;
@@ -35,12 +36,10 @@ public class ChildManager : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         _hook = GameObject.FindGameObjectWithTag("Hook").transform;
         _witch = GameObject.FindGameObjectWithTag("Player").transform;
+        _witchManager = _witch.GetComponent<PlayerManager>();
 
         ChildManager.numberOfChildren++;
         state = ChildState.Walk;
-
-        // EDIT
-        //Destroy(gameObject, Random.Range(5, 15));
     }
 
     private void Update()
@@ -50,7 +49,6 @@ public class ChildManager : MonoBehaviour
             case ChildState.Walk:
                 if(IsWitchSeen())
                 {
-                    transform.GetComponentInChildren<SpriteRenderer>().color = Color.red;
                     state = ChildState.Flee;
                     ResetFleeTimer();
                     _gameEventOnChildFlee.TriggerEvent();
@@ -64,14 +62,9 @@ public class ChildManager : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
-    {
-        ChildManager.numberOfChildren--;
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && _witchManager.IsHookEmpty)
         {
             if(state == ChildState.Flee)
             {
@@ -81,15 +74,6 @@ public class ChildManager : MonoBehaviour
             }
         }
     }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            _fleeRemainingTime = _fleeDuration;
-        }
-    }
-
     private void OnFlee()
     {
         if(IsWitchSeen())
@@ -103,7 +87,6 @@ public class ChildManager : MonoBehaviour
         }
         else
         {
-            transform.GetComponentInChildren<SpriteRenderer>().color = Color.green;
             state = ChildState.Walk;
         }
     }
@@ -125,6 +108,35 @@ public class ChildManager : MonoBehaviour
         transform.SetParent(_hook);
         transform.position = _hook.position;
         transform.Rotate(new(0, 0, 90));
-        transform.GetComponentInChildren<SpriteRenderer>().color = Color.cyan;
+    }
+
+    public void OnFall()
+    {
+        // Before falling, need to check if it is the hunted child.
+        // Because all children listen for the falling event
+        // If we don't check, all children will respond to this event.
+
+        if(state == ChildState.Hunted)
+        {
+            state = ChildState.Fall;
+            transform.SetParent(null);
+        }
+    }
+
+    public void OnDeep()
+    {
+        // Before deep, need to check if it is the falling child.
+        // Because all children listen for the deep event
+        // If we don't check, all children will respond to this event.
+
+        if (state == ChildState.Fall)
+        {
+            state = ChildState.Die;
+            Destroy(gameObject);
+        }
+    }
+    private void OnDestroy()
+    {
+        ChildManager.numberOfChildren--;
     }
 }

@@ -56,9 +56,14 @@ public class PlayerMovement : MonoBehaviour
     }
     private void ReadUserInput()
     {
-        if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonDown(0))
         {
-            ChangeDirection(Direction.Vertical);
+            ChangeDirection(Direction.Down);
+        }
+
+        if(Input.GetMouseButtonUp(0))
+        {
+            ChangeDirection(Direction.Up);
         }
     }
     private void Move()
@@ -129,8 +134,9 @@ public class PlayerMovement : MonoBehaviour
                 transform.Rotate(Vector3.up, 180);
                 _directionHorizontal = (_directionHorizontal == Direction.Left) ? Direction.Right : Direction.Left;
                 break;
-            case Direction.Vertical:
-                _directionVertical = (_directionVertical == Direction.Up) ? Direction.Down : Direction.Up;
+            case Direction.Up:
+            case Direction.Down:
+                _directionVertical = direction;
                 break;
             default:
                 ExceptionHandler.Throw(direction);
