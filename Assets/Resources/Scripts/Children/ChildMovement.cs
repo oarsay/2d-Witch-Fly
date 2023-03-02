@@ -13,8 +13,8 @@ public class ChildMovement : MonoBehaviour
     private static readonly float _minWalkSpeed = 1f;
     private static readonly float _maxWalkSpeed = 3f;
     private static readonly float _fleeSpeedBonus = 1.5f;
-    private static readonly float _fallSpeed = 3f;
-    private static readonly float _fallRotationSpeed = 5f;
+    private static readonly float _fallSpeed = 4f;
+    private static readonly float _fallRotationSpeed = 1.5f;
 
     [HideInInspector] public ChildDirection childDirection;
     private float _walkSpeed;

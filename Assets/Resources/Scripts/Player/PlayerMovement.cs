@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private Camera _camera;
-    [SerializeField] private GameEvent _gameEventPlayerOnBoundary;
+    [SerializeField] private GameEvent _gameEventOnPlayerHorizontalBoundary;
     public enum Direction
     {
         Horizontal,
@@ -72,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
         if (IsOutOfHorizontalBoundary())
         {
             ChangeDirection(Direction.Horizontal);
-            _gameEventPlayerOnBoundary.TriggerEvent();
+            _gameEventOnPlayerHorizontalBoundary.TriggerEvent();
         }
         else
         {
