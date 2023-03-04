@@ -13,7 +13,7 @@ public class TimerManager : MonoBehaviour
     [SerializeField] private float _currentTime;
     [SerializeField] private float _timerLimit;
 
-    private float _extraTimePerChild = 15f;
+    private readonly float _extraTimePerChild = 15f;
     private void Start()
     {
         StartCoroutine(UpdateTimer());

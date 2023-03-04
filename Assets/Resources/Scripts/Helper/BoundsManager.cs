@@ -19,7 +19,6 @@ public class BoundsManager : MonoBehaviour
         walkableAreaLeftBoundary = walkableAreaSR.bounds.min.x;
         walkableAreaRightBoundary = walkableAreaSR.bounds.max.x;
 
-
         // Children can be spawned in the spawn areas
         SpriteRenderer leftAreaSR = GameObject.Find("SpawnAreaLeft").GetComponent<SpriteRenderer>();
         SpriteRenderer rightAreaSR = GameObject.Find("SpawnAreaRight").GetComponent<SpriteRenderer>();
