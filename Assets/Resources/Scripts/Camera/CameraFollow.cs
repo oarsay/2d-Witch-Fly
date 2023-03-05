@@ -7,7 +7,7 @@ public class CameraFollow : MonoBehaviour
 
     private void Awake()
     {
-        _target = GameObject.FindGameObjectWithTag("CameraTarget").transform;
+        _target = GameObject.FindGameObjectWithTag(Tags.CAMERA_TARGET).transform;
     }
     void LateUpdate()
     {

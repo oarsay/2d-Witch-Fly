@@ -7,7 +7,7 @@ public class CauldronFallPoint : MonoBehaviour
     [SerializeField] private GameEvent _gameEventOnChildFall;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Child"))
+        if (collision.CompareTag(Tags.CHILD))
         {
             _gameEventOnChildFall.TriggerEvent();
         }

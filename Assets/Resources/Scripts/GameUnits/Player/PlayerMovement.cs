@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        _camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        _camera = GameObject.FindGameObjectWithTag(Tags.CAMERA).GetComponent<Camera>();
         _screenBoundaryHorizontal = Mathf.Abs(BoundsManager.walkableAreaRightBoundary);
     }
 

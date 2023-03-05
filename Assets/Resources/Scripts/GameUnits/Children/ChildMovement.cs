@@ -22,7 +22,7 @@ public class ChildMovement : MonoBehaviour
     private float _targetPositionX;//Random target point on X-axis to walk or flee.
     private void Awake()
     {
-        _cauldronDeepPoint = GameObject.FindGameObjectWithTag("CauldronDeepPoint").transform;
+        _cauldronDeepPoint = GameObject.FindGameObjectWithTag(Tags.CAULDRON_DEEP_POINT).transform;
         _childManager = GetComponent<ChildManager>();
         _walkSpeed = Random.Range(_minWalkSpeed, _maxWalkSpeed);
         _fleeSpeed = _walkSpeed + _fleeSpeedBonus;

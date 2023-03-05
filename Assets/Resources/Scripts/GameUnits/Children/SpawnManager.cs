@@ -8,17 +8,17 @@ public class SpawnManager : MonoBehaviour
 
     //Chosen position and child model for the next instantiation
     private static float _spawnPositionX;
-    private static float _spawnPositionY = -3.4696f;
+    private static readonly float _spawnPositionY = -3.4696f;
     private static GameObject _childPrefab;
 
     //"Children" gameobject on the scene, parent (container) object for all children
     private static Transform _childrenParentTransform;
-    private static readonly string _childrenParentObjectTag = "Children";
+    private static readonly string _childrenParentObjectTag = Tags.CHILDREN;
     private static PlayerMovement _playerMovement;
 
     private void Awake()
     {
-        _playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        _playerMovement = GameObject.FindGameObjectWithTag(Tags.PLAYER).GetComponent<PlayerMovement>();
         InitChildrenParentGameObject();
         LoadChildrenPrefabs();
     }
@@ -46,7 +46,7 @@ public class SpawnManager : MonoBehaviour
     }
     private void LoadChildrenPrefabs()
     {
-        _childrenPrefabs = Resources.LoadAll<GameObject>("Prefabs/Children");
+        _childrenPrefabs = Resources.LoadAll<GameObject>(Tags.CHILDREN_PREFABS_LOCATION);
         if (_childrenPrefabs == null) ExceptionHandler.Throw(_childrenPrefabs);
     }
     //This method is called by the event

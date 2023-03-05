@@ -1,5 +1,4 @@
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public enum ChildState
 {
@@ -34,8 +33,8 @@ public class ChildManager : MonoBehaviour
 
         _childMovement = GetComponent<ChildMovement>();
         _rigidbody = GetComponent<Rigidbody2D>();
-        _hook = GameObject.FindGameObjectWithTag("Hook").transform;
-        _witch = GameObject.FindGameObjectWithTag("Player").transform;
+        _hook = GameObject.FindGameObjectWithTag(Tags.HOOK).transform;
+        _witch = GameObject.FindGameObjectWithTag(Tags.PLAYER).transform;
         _witchManager = _witch.GetComponent<PlayerManager>();
 
         ChildManager.numberOfChildren++;
@@ -64,7 +63,7 @@ public class ChildManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && _witchManager.IsHookEmpty)
+        if (collision.CompareTag(Tags.PLAYER) && _witchManager.IsHookEmpty)
         {
             if(state == ChildState.Flee)
             {
@@ -72,6 +71,10 @@ public class ChildManager : MonoBehaviour
                 _gameEventOnChildHunted.TriggerEvent();
                 OnHunted();
             }
+        }
+        else if(collision.CompareTag(Tags.HIDING_SPOT))
+        {
+
         }
     }
     private void OnFlee()
@@ -137,6 +140,6 @@ public class ChildManager : MonoBehaviour
     }
     private void OnDestroy()
     {
-        ChildManager.numberOfChildren--;
+        numberOfChildren--;
     }
 }
