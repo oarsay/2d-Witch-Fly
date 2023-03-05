@@ -47,7 +47,7 @@ public class SpawnManager : MonoBehaviour
     private void LoadChildrenPrefabs()
     {
         _childrenPrefabs = Resources.LoadAll<GameObject>(Tags.CHILDREN_PREFABS_LOCATION);
-        if (_childrenPrefabs == null) ExceptionHandler.Throw(_childrenPrefabs);
+        if (_childrenPrefabs == null) ExceptionHandler.Throw("SpawnManager/LoadChildrenPrefabs/Children prefabs cannot be loaded!");
     }
     //This method is called by the event
     public void SpawnNewChildren()
@@ -85,7 +85,7 @@ public class SpawnManager : MonoBehaviour
         }
         else
         {
-            ExceptionHandler.Throw(_playerMovement.DirectionHorizontal);
+            ExceptionHandler.Throw("SpawnManager.cs/GenerateSpawnPositionX/Unknown direction state in if-else!");
         }
     }
 }

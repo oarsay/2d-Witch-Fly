@@ -4,18 +4,27 @@ using UnityEngine;
 
 public class HidingSpot : MonoBehaviour
 {
-    private float _centerXPosition;
     private bool _isEmpty = true;
+    public bool IsEmpty { get { return _isEmpty; } set { _isEmpty = value; } }
+    private float _centerXPosition;
+    private SpriteRenderer _spriteRenderer;
 
     private void Awake()
     {
-        if(TryGetComponent<SpriteRenderer>(out var spriteRenderer))
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        if (_spriteRenderer)
         {
-            _centerXPosition = spriteRenderer.bounds.center.x;
+            _centerXPosition = _spriteRenderer.bounds.center.x;
         }
         else
         {
-            ExceptionHandler.Throw(spriteRenderer);
+            ExceptionHandler.Throw("HidingSpot.cs/Awake/Sprite renderer cannot be found!");
         }
+    }
+
+    public void Hide(Transform child)
+    {
+        child.position = transform.position;
+        _isEmpty = false;
     }
 }

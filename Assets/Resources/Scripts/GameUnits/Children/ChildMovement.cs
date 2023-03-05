@@ -105,7 +105,7 @@ public class ChildMovement : MonoBehaviour
                 transform.position += (moveAmount * Time.deltaTime);
                 break;
             default:
-                ExceptionHandler.Throw(childDirection);
+                ExceptionHandler.Throw("ChildMovement.cs/MoveToTargetBy/Unknown direction state in switch!");
                 break;
         }
     }

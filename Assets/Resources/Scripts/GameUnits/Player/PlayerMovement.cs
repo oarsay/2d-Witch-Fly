@@ -85,7 +85,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 transform.position -= (moveAmount * Time.deltaTime);
             }
-            else ExceptionHandler.Throw(_directionHorizontal);
+            else ExceptionHandler.Throw("PlayerMovement.cs/Move/Unknown direction state in horizontal movement!");
         }
 
         // Move vertical
@@ -100,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 transform.position -= (moveAmount * Time.deltaTime);
             }
-            else ExceptionHandler.Throw(_directionVertical);
+            else ExceptionHandler.Throw("PlayerMovement.cs/Move/Unknown direction state in vertical movement!");
         }
     }
     private bool IsOutOfHorizontalBoundary()
@@ -139,7 +139,7 @@ public class PlayerMovement : MonoBehaviour
                 _directionVertical = direction;
                 break;
             default:
-                ExceptionHandler.Throw(direction);
+                ExceptionHandler.Throw("PlayerMovement.cs/ChangeDirection/Unknown direction state in switch!");
                 break;
         }
     }

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public enum ChildState
@@ -14,6 +15,7 @@ public class ChildManager : MonoBehaviour
     private Transform _witch;
     private Transform _hook;
     private PlayerManager _witchManager;
+    private HidingSpot _hidingSpot;
     private Rigidbody2D _rigidbody;
     [HideInInspector] public ChildMovement _childMovement;
     [SerializeField] private GameEvent _gameEventOnChildFlee;
@@ -24,6 +26,7 @@ public class ChildManager : MonoBehaviour
     private static readonly float _sightRange = 6f;
     private static readonly float _fleeDuration = 3f;
     private float _fleeRemainingTime = 0;
+    private WaitForSeconds _refreshHidingDuration = new(3);
 
     public void Awake()
     {
@@ -56,6 +59,9 @@ public class ChildManager : MonoBehaviour
             case ChildState.Flee:
                 OnFlee();
                 break;
+            case ChildState.Hide:
+                
+                break;
             case ChildState.Hunted:
                 break;
         }
@@ -72,9 +78,12 @@ public class ChildManager : MonoBehaviour
                 OnHunted();
             }
         }
-        else if(collision.CompareTag(Tags.HIDING_SPOT))
+        else if(collision.CompareTag(Tags.HIDING_SPOT) && state == ChildState.Flee && collision.gameObject.GetComponent<HidingSpot>().IsEmpty)
         {
-
+            _hidingSpot = collision.gameObject.GetComponent<HidingSpot>();
+            state = ChildState.Hide;
+            _hidingSpot.Hide(transform);
+            StartCoroutine(OnHide());
         }
     }
     private void OnFlee()
@@ -137,6 +146,24 @@ public class ChildManager : MonoBehaviour
             state = ChildState.Die;
             Destroy(gameObject);
         }
+    }
+
+    private IEnumerator OnHide()
+    {
+        // do-while was used instead of while loop
+        // because I want a child to hide for a certain time
+        // once he/she just starts hiding. Otherwise, for some cases
+        // the child would hide and leave immediately.
+
+        // Hide as long as you are safe
+        do
+        {
+            yield return _refreshHidingDuration;
+        } while (IsWitchSeen());
+
+        // Now you can leave
+        state = ChildState.Walk;
+        _hidingSpot.IsEmpty = true;
     }
     private void OnDestroy()
     {
