@@ -86,6 +86,7 @@ public class ChildManager : MonoBehaviour
             StartCoroutine(OnHide());
         }
     }
+
     private void OnFlee()
     {
         if(IsWitchSeen())

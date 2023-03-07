@@ -12,6 +12,7 @@ TagManager:
   - BoundsManager
   - Hook
   - CauldronDeepPoint
+  - HidingSpot
   layers:
   - Default
   - TransparentFX

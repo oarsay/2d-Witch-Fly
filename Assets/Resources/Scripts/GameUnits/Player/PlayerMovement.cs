@@ -28,6 +28,10 @@ public class PlayerMovement : MonoBehaviour
     private float _moveSpeedVertical = 3f;
     private Direction _directionVertical = Direction.Up;
 
+    // properties
+    public float ScreenBoundaryVerticalUpper => _screenBoundaryVerticalUpper;
+    public float ScreenBoundaryVerticalBottom => _screenBoundaryVerticalBottom;
+
     private void Awake()
     {
         _camera = GameObject.FindGameObjectWithTag(Tags.CAMERA).GetComponent<Camera>();
