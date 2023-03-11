@@ -105,8 +105,9 @@ public class ChildManager : MonoBehaviour
     }
     private bool IsWitchSeen()
     {
-        float distanceToWitch = Vector2.Distance(transform.position, _witch.position);
+        if (_witchManager.IsInvisible) return false;
 
+        float distanceToWitch = Vector2.Distance(transform.position, _witch.position);
         return distanceToWitch < _sightRange;
     }
 
