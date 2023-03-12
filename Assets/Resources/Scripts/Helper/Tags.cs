@@ -30,9 +30,11 @@ public static class Tags
         
     public const string SPAWN_AREA_LEFT = "SpawnAreaLeft";
     public const string SPAWN_AREA_RIGHT = "SpawnAreaRight";
+    public const string POWERUP_SPAWN_AREA = "PowerupSpawnArea";
 
 
     // ===== EDITOR =====
         // Address
         public const string CHILDREN_PREFABS_LOCATION = "Prefabs/Children";
+        public const string POWERUP_PREFABS_LOCATION = "Prefabs/Environment/Power-Ups";
 }

@@ -6,14 +6,15 @@ public class Invisibility : PowerUp
     private Renderer _spriteRenderer;
     private Color _colorOriginal;
     private Color _colorTransparent;
-    private float _transparencyAmount = 0.3f;
+    private float _transparencyAmount = 0.1f;
     private void Awake()
     {
         _spriteRenderer = GameObject.FindGameObjectWithTag(Tags.PLAYER).GetComponent<Renderer>();
         _playerManager = GameObject.FindGameObjectWithTag(Tags.PLAYER).GetComponent<PlayerManager>();
         _colorOriginal = _spriteRenderer.material.color;
         _colorTransparent = new Color(_colorOriginal.r, _colorOriginal.g, _colorOriginal.b, _transparencyAmount);
-        effectDuration = 10f;
+        effectDuration = new WaitForSeconds(10f);
+        StartCoroutine(nameof(base.AutoDestroy));
     }
     public override void Apply()
     {
@@ -25,20 +26,26 @@ public class Invisibility : PowerUp
 
     IEnumerator ApplyEffect()
     {
-        StartInvisibility();
-        yield return new WaitForSeconds(effectDuration);
-        EndInvisibility();
+        StartEffect();
+        yield return effectDuration;
+        EndEffect();
     }
 
-    public void StartInvisibility()
+    public override void StartEffect()
     {
-        _spriteRenderer.material.color = _colorTransparent;
-        _playerManager.IsInvisible = true;
+        if (!_playerManager.IsInvisible)
+        {
+            _spriteRenderer.material.color = _colorTransparent;
+            _playerManager.IsInvisible = true;
+        }
     }
-
-    public void EndInvisibility()
+    public override void EndEffect()
     {
-        _spriteRenderer.material.color = _colorOriginal;
-        _playerManager.IsInvisible = false;
+        if (_playerManager.IsInvisible)
+        {
+            _spriteRenderer.material.color = _colorOriginal;
+            _playerManager.IsInvisible = false;
+            Destroy(gameObject);
+        }
     }
 }

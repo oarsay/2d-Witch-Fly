@@ -14,6 +14,7 @@ public class TimerManager : MonoBehaviour
     [SerializeField] private float _timerLimit;
 
     private readonly float _extraTimePerChild = 15f;
+    private readonly WaitForSeconds _timeUpdateDelay = new(1f);
     private void Start()
     {
         StartCoroutine(UpdateTimer());
@@ -24,7 +25,7 @@ public class TimerManager : MonoBehaviour
         while(_currentTime > _timerLimit)
         {
             UpdateTimerUI();
-            yield return new WaitForSeconds(1f);
+            yield return _timeUpdateDelay;
             _currentTime--;
         }
 

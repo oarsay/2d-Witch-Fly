@@ -6,11 +6,13 @@ public class PlayerManager : MonoBehaviour
 {
     public bool IsHookEmpty { get; private set; }
     public bool IsInvisible { get; set; }
+    public bool OnSpeedBuff { get; set; }
     private void Start()
     {
         IsHookEmpty = true;
         IsInvisible = false;
-    }    
+        OnSpeedBuff = false;
+    }
     public void OnHuntedAChild()
     {
         IsHookEmpty = false;

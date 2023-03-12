@@ -71,7 +71,7 @@ public class ChildManager : MonoBehaviour
     {
         if (collision.CompareTag(Tags.PLAYER) && _witchManager.IsHookEmpty)
         {
-            if(state == ChildState.Flee)
+            if(state == ChildState.Walk || state == ChildState.Flee)
             {
                 state = ChildState.Hunted;
                 _gameEventOnChildHunted.TriggerEvent();
