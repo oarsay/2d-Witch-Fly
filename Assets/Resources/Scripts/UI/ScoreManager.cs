@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
@@ -61,5 +59,12 @@ public class ScoreManager : MonoBehaviour
         // https://forum.unity.com/threads/re-map-a-number-from-one-range-to-another.119437/
         float t = Mathf.InverseLerp(oldLow, oldHigh, input);
         return Mathf.Lerp(newLow, newHigh, t);
+    }
+
+    public void DisableScore()
+    {
+        // EDIT
+        // Save Score Here
+        enabled = false;
     }
 }
