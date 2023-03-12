@@ -843,7 +843,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 7562f83700000000
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -1150,7 +1150,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1920, y: 1080}
+  m_ReferenceResolution: {x: 2340, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
@@ -1765,6 +1765,18 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6782994665144968284, guid: 3bc94bc0b3196624cbf21d5b56bd2e2c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6782994665144968284, guid: 3bc94bc0b3196624cbf21d5b56bd2e2c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6782994665144968284, guid: 3bc94bc0b3196624cbf21d5b56bd2e2c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6782994665144968284, guid: 3bc94bc0b3196624cbf21d5b56bd2e2c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -1920,7 +1932,7 @@ PrefabInstance:
       objectReference: {fileID: 1869715389}
     - target: {fileID: 6986919986601521545, guid: f4450944ebd20b64c8ea66ba5166da22, type: 3}
       propertyPath: _currentTime
-      value: 10
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 6986919986601521546, guid: f4450944ebd20b64c8ea66ba5166da22, type: 3}
       propertyPath: m_Name

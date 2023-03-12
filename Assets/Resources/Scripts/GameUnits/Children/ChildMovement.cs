@@ -27,7 +27,7 @@ public class ChildMovement : MonoBehaviour
         _walkSpeed = Random.Range(_minWalkSpeed, _maxWalkSpeed);
         _fleeSpeed = _walkSpeed + _fleeSpeedBonus;
         UpdateTargetPosition();
-        UpdateDirection();
+        SetDirection();
     }
 
     private void Update()
@@ -39,7 +39,7 @@ public class ChildMovement : MonoBehaviour
                 if(IsArrivedToTarget())
                 {
                     UpdateTargetPosition();
-                    UpdateDirection();
+                    SetDirection();
                 }
                 MoveToTargetBy(_walkSpeed);
                 break;
@@ -49,7 +49,7 @@ public class ChildMovement : MonoBehaviour
                 if (IsArrivedToTarget())
                 {
                     UpdateTargetPosition();
-                    UpdateDirection();
+                    SetDirection();
                 }
                 MoveToTargetBy(_fleeSpeed);
                 break;
@@ -63,23 +63,29 @@ public class ChildMovement : MonoBehaviour
         }
     }
 
-    private void UpdateDirection()
+    private void SetDirection()
     {
-
-        if(_targetPositionX < transform.position.x)
+        if(_targetPositionX < transform.position.x && childDirection == ChildDirection.Right)
         {
             childDirection = ChildDirection.Left;
-            transform.rotation = Quaternion.Euler(new(0,0,0));
+            FlipSprite();
         }
-        else if(_targetPositionX > transform.position.x)
+        else if(_targetPositionX > transform.position.x && childDirection == ChildDirection.Left)
         {
             childDirection = ChildDirection.Right;
-            transform.rotation = Quaternion.Euler(new(0, 180, 0));
+            FlipSprite();
         }
         else
         {
-            //Debug.Log("The child overlays with the target!");
+            ExceptionHandler.Throw("ChildMovement.cs/SetDirection/The child's and his target positions are equal. Cannot detect direction!");
         }
+    }
+
+    private void FlipSprite()
+    {
+        Vector3 currentScale = gameObject.transform.localScale;
+        currentScale.x *= -1;
+        gameObject.transform.localScale = currentScale;
     }
 
     private bool IsArrivedToTarget()
@@ -117,10 +123,10 @@ public class ChildMovement : MonoBehaviour
         transform.Rotate(Vector3.forward, _fallRotationSpeed);
     }
 
-    void OnDrawGizmos()
-    {
-        // Draw a yellow sphere at the transform's position
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(new(_targetPositionX, -3f, 0f), 0.3f);
-    }
+    //void OnDrawGizmos()
+    //{
+    //    // Draw a yellow sphere at the transform's position
+    //    Gizmos.color = Color.yellow;
+    //    Gizmos.DrawSphere(new(_targetPositionX, -3f, 0f), 0.3f);
+    //}
 }
