@@ -65,15 +65,15 @@ public class ChildMovement : MonoBehaviour
 
     private void SetDirection()
     {
-        if(_targetPositionX < transform.position.x && childDirection == ChildDirection.Right)
+        if(_targetPositionX < transform.position.x)
         {
             childDirection = ChildDirection.Left;
-            FlipSprite();
+            SetSpriteDirection();
         }
-        else if(_targetPositionX > transform.position.x && childDirection == ChildDirection.Left)
+        else if(_targetPositionX > transform.position.x)
         {
             childDirection = ChildDirection.Right;
-            FlipSprite();
+            SetSpriteDirection();
         }
         else
         {
@@ -81,11 +81,26 @@ public class ChildMovement : MonoBehaviour
         }
     }
 
-    private void FlipSprite()
+    private void SetSpriteDirection()
     {
-        Vector3 currentScale = gameObject.transform.localScale;
-        currentScale.x *= -1;
-        gameObject.transform.localScale = currentScale;
+        Vector3 currentScale;
+
+        switch (childDirection)
+        {
+            case ChildDirection.Left:
+                currentScale = gameObject.transform.localScale;
+                currentScale.x = Mathf.Abs(currentScale.x);
+                gameObject.transform.localScale = currentScale;
+                break;
+            case ChildDirection.Right:
+                currentScale = gameObject.transform.localScale;
+                currentScale.x = -Mathf.Abs(currentScale.x);
+                gameObject.transform.localScale = currentScale;
+                break;
+            default:
+                ExceptionHandler.Throw("ChildMovement.cs/SetSpriteDirection/Unknown direction state in switch!");
+                break;
+        }
     }
 
     private bool IsArrivedToTarget()
@@ -123,10 +138,10 @@ public class ChildMovement : MonoBehaviour
         transform.Rotate(Vector3.forward, _fallRotationSpeed);
     }
 
-    //void OnDrawGizmos()
-    //{
-    //    // Draw a yellow sphere at the transform's position
-    //    Gizmos.color = Color.yellow;
-    //    Gizmos.DrawSphere(new(_targetPositionX, -3f, 0f), 0.3f);
-    //}
+    void OnDrawGizmos()
+    {
+        // Draw a yellow sphere at the transform's position
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(new(_targetPositionX, -3f, 0f), 0.3f);
+    }
 }
