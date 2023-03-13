@@ -3,12 +3,26 @@ using UnityEngine;
 
 public class GameManager: MonoBehaviour
 {
+    private static GameManager _instance;
+    public static GameManager Instance
+    {
+        get
+        {
+            if (_instance is null) ExceptionHandler.Throw("Game Manager is NULL!");
+            return _instance;
+        }
+    }
     public static GameState state;
     public enum GameState
     {
         Start,
         Game,
         End
+    }
+
+    private void Awake()
+    {
+        _instance = this;
     }
 
     public void ChangeGameState(GameState newState)
