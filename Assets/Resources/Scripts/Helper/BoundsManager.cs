@@ -5,6 +5,8 @@ public class BoundsManager : MonoBehaviour
     // Walkable Area Boundaries
     public static float walkableAreaLeftBoundary;
     public static float walkableAreaRightBoundary;
+    public static float walkableAreaBottomBoundary;
+    public static float walkableAreaTopBoundary;
 
     // Children Spawn Area Boundaries
     public static float leftSpawnAreaLeftBoundary;
@@ -20,10 +22,15 @@ public class BoundsManager : MonoBehaviour
 
     private void Awake()
     {
-        // Witch and children can patrol in the walkable area
+        // The witch and children can patrol in the walkable area
         SpriteRenderer walkableAreaSR = GameObject.FindGameObjectWithTag(Tags.WALKABLE_AREA).GetComponent<SpriteRenderer>();
-        walkableAreaLeftBoundary = walkableAreaSR.bounds.min.x;
-        walkableAreaRightBoundary = walkableAreaSR.bounds.max.x;
+            // horizontal
+            walkableAreaLeftBoundary = walkableAreaSR.bounds.min.x;
+            walkableAreaRightBoundary = walkableAreaSR.bounds.max.x;
+            // vertical
+            walkableAreaBottomBoundary = walkableAreaSR.bounds.min.y;
+            walkableAreaTopBoundary = walkableAreaSR.bounds.max.y;
+
 
         // Children can be spawned in the children spawn area
         SpriteRenderer leftAreaSR = GameObject.Find(Tags.SPAWN_AREA_LEFT).GetComponent<SpriteRenderer>();

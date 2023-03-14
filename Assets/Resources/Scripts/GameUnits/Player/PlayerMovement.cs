@@ -23,8 +23,8 @@ public class PlayerMovement : MonoBehaviour
     public Direction DirectionHorizontal { get { return _directionHorizontal; } }
 
     //************* VERTICAL MOVEMENT *************
-    private readonly float _screenBoundaryVerticalUpper = 4f; //Witch can move between -3.2 and +4 on the Y-axis
-    private readonly float _screenBoundaryVerticalBottom = -3.2f;
+    private float _screenBoundaryVerticalUpper;
+    private float _screenBoundaryVerticalBottom;
     private float _currentMoveSpeedVertical = 3f;
     private Direction _directionVertical = Direction.Up;
 
@@ -38,6 +38,8 @@ public class PlayerMovement : MonoBehaviour
     {
         _camera = GameObject.FindGameObjectWithTag(Tags.CAMERA).GetComponent<Camera>();
         _screenBoundaryHorizontal = Mathf.Abs(BoundsManager.walkableAreaRightBoundary);
+        _screenBoundaryVerticalBottom = BoundsManager.walkableAreaBottomBoundary;
+        _screenBoundaryVerticalUpper = BoundsManager.walkableAreaTopBoundary;
     }
 
     private void Update()

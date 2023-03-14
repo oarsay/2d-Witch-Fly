@@ -8,7 +8,7 @@ public class SpawnManager : MonoBehaviour
 
     //Chosen position and child model for the next instantiation
     private static float _spawnPositionX;
-    private static readonly float _spawnPositionY = -3.4696f;
+    private static readonly float _spawnPositionY = -6.069342f;
     private static GameObject _childPrefab;
 
     //"Children" gameobject on the scene, parent (container) object for all children
