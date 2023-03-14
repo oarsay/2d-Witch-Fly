@@ -37,13 +37,12 @@ public class BackgroundControl_0 : MonoBehaviour
     }
 
     public void NextBG(){
-        Debug.Log("deneme");
-        backgroundNum = backgroundNum + 1;
+        backgroundNum++;
         if (backgroundNum > max_backgroundNum) backgroundNum = 0;
         ChangeSprite();
     }
     public void BackBG(){
-        backgroundNum = backgroundNum - 1;
+        backgroundNum--;
         if (backgroundNum < 0) backgroundNum = max_backgroundNum;
         ChangeSprite();
     }
