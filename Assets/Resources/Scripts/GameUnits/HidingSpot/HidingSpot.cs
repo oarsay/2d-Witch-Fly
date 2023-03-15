@@ -11,15 +11,15 @@ public class HidingSpot : MonoBehaviour
 
     private void Awake()
     {
-        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        if (_spriteRenderer)
-        {
-            _centerXPosition = _spriteRenderer.bounds.center.x;
-        }
-        else
-        {
-            ExceptionHandler.Throw("HidingSpot.cs/Awake/Sprite renderer cannot be found!");
-        }
+        ////_spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        //if (_spriteRenderer)
+        //{
+        //    //_centerXPosition = _spriteRenderer.bounds.center.x;
+        //}
+        //else
+        //{
+        //    ExceptionHandler.Throw("HidingSpot.cs/Awake/Sprite renderer cannot be found!");
+        //}
     }
 
     public void Hide(Transform child)
