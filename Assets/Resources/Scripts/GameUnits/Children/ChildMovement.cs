@@ -89,12 +89,12 @@ public class ChildMovement : MonoBehaviour
         {
             case ChildDirection.Left:
                 currentScale = gameObject.transform.localScale;
-                currentScale.x = Mathf.Abs(currentScale.x);
+                currentScale.x = -Mathf.Abs(currentScale.x);
                 gameObject.transform.localScale = currentScale;
                 break;
             case ChildDirection.Right:
                 currentScale = gameObject.transform.localScale;
-                currentScale.x = -Mathf.Abs(currentScale.x);
+                currentScale.x = Mathf.Abs(currentScale.x);
                 gameObject.transform.localScale = currentScale;
                 break;
             default:
