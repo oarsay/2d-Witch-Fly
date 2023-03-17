@@ -88,16 +88,10 @@ public class ChildMovement : MonoBehaviour
         switch (childDirection)
         {
             case ChildDirection.Left:
-                currentScale = gameObject.transform.localScale;
-                //currentScale.x = Mathf.Abs(currentScale.x);
-                currentScale.x = -1;
-                gameObject.transform.localScale = currentScale;
+                transform.eulerAngles = new Vector3(0, 0, 0);
                 break;
             case ChildDirection.Right:
-                currentScale = gameObject.transform.localScale;
-                //currentScale.x = -Mathf.Abs(currentScale.x);
-                currentScale.x = 1;
-                gameObject.transform.localScale = currentScale;
+                transform.eulerAngles = new Vector3(0, 180, 0);
                 break;
             default:
                 ExceptionHandler.Throw("ChildMovement.cs/SetSpriteDirection/Unknown direction state in switch!");
