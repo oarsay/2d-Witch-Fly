@@ -24,6 +24,7 @@ public class HidingSpot : MonoBehaviour
 
     public void Hide(Transform child)
     {
+        child.GetComponent<Rigidbody2D>().gravityScale = 0;
         child.position = transform.position;
         _isEmpty = false;
     }

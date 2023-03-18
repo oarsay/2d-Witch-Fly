@@ -88,10 +88,10 @@ public class ChildMovement : MonoBehaviour
         switch (childDirection)
         {
             case ChildDirection.Left:
-                transform.eulerAngles = new Vector3(0, 0, 0);
+                transform.eulerAngles = new Vector3(0, 180, 0);
                 break;
             case ChildDirection.Right:
-                transform.eulerAngles = new Vector3(0, 180, 0);
+                transform.eulerAngles = new Vector3(0, 0, 0);
                 break;
             default:
                 ExceptionHandler.Throw("ChildMovement.cs/SetSpriteDirection/Unknown direction state in switch!");

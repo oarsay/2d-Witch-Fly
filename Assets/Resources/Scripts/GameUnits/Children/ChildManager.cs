@@ -166,6 +166,7 @@ public class ChildManager : MonoBehaviour
         // Now you can leave
         state = ChildState.Walk;
         _hidingSpot.IsEmpty = true;
+        GetComponent<Rigidbody2D>().gravityScale = 1;
     }
     private void OnDestroy()
     {
