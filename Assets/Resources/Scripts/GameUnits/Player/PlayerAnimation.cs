@@ -6,13 +6,9 @@ public class PlayerAnimation : MonoBehaviour
 {
     private Animator _animator;
 
-    // Animation states
-    const string IDLE = "Idle";
-    const string ON_SPEED_BUFF = "Speedy";
-    const string LAUGH = "Laugh";
-
     // Animation parameters
     const string ON_SPEED = "onSpeed";
+    const string LAUGH = "laugh";
 
     void Start()
     {
@@ -21,7 +17,7 @@ public class PlayerAnimation : MonoBehaviour
 
     public void OnChildHunt()
     {
-        _animator.Play(LAUGH);
+        _animator.SetTrigger(LAUGH);
     }
 
     public void StartSpeedBuffAnimation()
