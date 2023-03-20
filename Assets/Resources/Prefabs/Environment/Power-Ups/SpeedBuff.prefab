@@ -137,6 +137,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04c6079333207604fbe70cd5c4cd9eae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameEventOnSpeedBuffStart: {fileID: 11400000, guid: a9aa98358f3837f4981d1825d4e65618, type: 2}
+  _gameEventOnSpeedBuffEnd: {fileID: 11400000, guid: a4fc907f894f8c14a8e08e50c00fe66d, type: 2}
 --- !u!95 &7807512386480661215
 Animator:
   serializedVersion: 5

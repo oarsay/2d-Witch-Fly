@@ -139,10 +139,7 @@ public class PlayerMovement : MonoBehaviour
         switch (direction)
         {
             case Direction.Horizontal:
-                //transform.Rotate(Vector3.up, 180);
-                Vector3 currentScale = gameObject.transform.localScale;
-                currentScale.x *= -1;
-                gameObject.transform.localScale = currentScale;
+                transform.Rotate(Vector3.up, 180);
                 _directionHorizontal = (_directionHorizontal == Direction.Left) ? Direction.Right : Direction.Left;
                 break;
             case Direction.Up:

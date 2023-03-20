@@ -83,8 +83,6 @@ public class ChildMovement : MonoBehaviour
 
     private void SetSpriteDirection()
     {
-        Vector3 currentScale;
-
         switch (childDirection)
         {
             case ChildDirection.Left:

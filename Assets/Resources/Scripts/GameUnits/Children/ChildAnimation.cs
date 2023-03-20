@@ -15,7 +15,6 @@ public class ChildAnimation : MonoBehaviour
     const string CHILD_HIDE = "Child_Hide";
     const string CHILD_FALL = "Child_Fall";
 
-
     private void Start()
     {
         _childManager = GetComponent<ChildManager>();

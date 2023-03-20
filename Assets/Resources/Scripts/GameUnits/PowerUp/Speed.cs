@@ -2,6 +2,8 @@ using System.Collections;
 using UnityEngine;
 public class Speed : PowerUp
 {
+    [SerializeField] private GameEvent _gameEventOnSpeedBuffStart;
+    [SerializeField] private GameEvent _gameEventOnSpeedBuffEnd;
     private PlayerManager _playerManager;
     private PlayerMovement _playerMovement;
     private readonly float _horizontalSpeedBuffAmount = 3f;
@@ -15,10 +17,7 @@ public class Speed : PowerUp
     }
     public override void Apply()
     {
-        if (!_playerManager.OnSpeedBuff)
-        {
-            StartCoroutine(ApplyEffect());
-        }
+        StartCoroutine(ApplyEffect());
     }
     IEnumerator ApplyEffect()
     {
@@ -28,21 +27,15 @@ public class Speed : PowerUp
     }
     public override void StartEffect()
     {
-        if(!_playerManager.OnSpeedBuff)
-        {
-            _playerMovement.BaseMoveSpeedHorizontal += _horizontalSpeedBuffAmount;
-            _playerMovement.CurrentMoveSpeedVertical += _verticalSpeedBuffAmount;
-            _playerManager.OnSpeedBuff = true;
-        }
+        _gameEventOnSpeedBuffStart.TriggerEvent();
+        _playerMovement.BaseMoveSpeedHorizontal += _horizontalSpeedBuffAmount;
+        _playerMovement.CurrentMoveSpeedVertical += _verticalSpeedBuffAmount;
     }
     public override void EndEffect()
     {
-        if (_playerManager.OnSpeedBuff)
-        {
-            _playerMovement.BaseMoveSpeedHorizontal -= _horizontalSpeedBuffAmount;
-            _playerMovement.CurrentMoveSpeedVertical -= _verticalSpeedBuffAmount;
-            _playerManager.OnSpeedBuff = false;
-            Destroy(gameObject);
-        }
+        _gameEventOnSpeedBuffEnd.TriggerEvent();
+        _playerMovement.BaseMoveSpeedHorizontal -= _horizontalSpeedBuffAmount;
+        _playerMovement.CurrentMoveSpeedVertical -= _verticalSpeedBuffAmount;
+        Destroy(gameObject);
     }
 }
