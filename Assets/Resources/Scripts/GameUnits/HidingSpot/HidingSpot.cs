@@ -6,26 +6,12 @@ public class HidingSpot : MonoBehaviour
 {
     private bool _isEmpty = true;
     public bool IsEmpty { get { return _isEmpty; } set { _isEmpty = value; } }
-    private float _centerXPosition;
-    private SpriteRenderer _spriteRenderer;
-
-    private void Awake()
-    {
-        ////_spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        //if (_spriteRenderer)
-        //{
-        //    //_centerXPosition = _spriteRenderer.bounds.center.x;
-        //}
-        //else
-        //{
-        //    ExceptionHandler.Throw("HidingSpot.cs/Awake/Sprite renderer cannot be found!");
-        //}
-    }
+    private float _yPositionWhileHiding = -5.6f;
 
     public void Hide(Transform child)
     {
         child.GetComponent<Rigidbody2D>().gravityScale = 0;
-        child.position = transform.position;
+        child.position = new Vector3(transform.position.x, _yPositionWhileHiding, transform.position.z);
         _isEmpty = false;
     }
 }
