@@ -3565,9 +3565,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dashPrefab: {fileID: 7519166403214627036, guid: 0711578e0ddb1da48bb3d612be5d9392, type: 3}
-  angleX: 0
-  angleY: 0
-  angleZ: 0
+  angleZ: 2
+  _leafPrefab: {fileID: 4917610038801425553, guid: 1c724905c946a924d8449aa0b900247f, type: 3}
 --- !u!1001 &1996479506
 PrefabInstance:
   m_ObjectHideFlags: 0

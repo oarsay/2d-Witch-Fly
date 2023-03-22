@@ -19,9 +19,10 @@ public static class Tags
         // Manager Tags
         public const string SPAWN_MANAGER = "SpawnManager";
         public const string BOUNDS_MANAGER = "BoundsManager";
+        
 
         // Other Tags
-        public const string CAMERA = "MainCamera";
+    public const string CAMERA = "MainCamera";
         public const string CAMERA_TARGET = "CameraTarget";
 
 
@@ -31,10 +32,11 @@ public static class Tags
     public const string SPAWN_AREA_LEFT = "SpawnAreaLeft";
     public const string SPAWN_AREA_RIGHT = "SpawnAreaRight";
     public const string POWERUP_SPAWN_AREA = "PowerupSpawnArea";
+    public const string VFX_MANAGER = "VFXManager";
 
 
     // ===== EDITOR =====
-        // Address
-        public const string CHILDREN_PREFABS_LOCATION = "Prefabs/Children";
+    // Address
+    public const string CHILDREN_PREFABS_LOCATION = "Prefabs/Children";
         public const string POWERUP_PREFABS_LOCATION = "Prefabs/Environment/Power-Ups";
 }
