@@ -1,18 +1,21 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 public class Invisibility : PowerUp
 {
     private PlayerManager _playerManager;
-    private Renderer _spriteRenderer;
+    private List<Renderer> _playerRenderers;
     private Color _colorOriginal;
     private Color _colorTransparent;
     private float _transparencyAmount = 0.1f;
+
+    // Hologram effect property names
+    private readonly string HOLOGRAM = "_HologramBlend";
     private void Awake()
     {
-        _spriteRenderer = GameObject.FindGameObjectWithTag(Tags.PLAYER).GetComponent<Renderer>();
         _playerManager = GameObject.FindGameObjectWithTag(Tags.PLAYER).GetComponent<PlayerManager>();
-        _colorOriginal = _spriteRenderer.material.color;
-        _colorTransparent = new Color(_colorOriginal.r, _colorOriginal.g, _colorOriginal.b, _transparencyAmount);
+        _playerRenderers = GameObject.FindGameObjectWithTag(Tags.PLAYER).GetComponentsInChildren<Renderer>().ToList();
         effectDuration = new WaitForSeconds(10f);
         StartCoroutine(nameof(base.AutoDestroy));
     }
@@ -35,7 +38,7 @@ public class Invisibility : PowerUp
     {
         if (!_playerManager.IsInvisible)
         {
-            _spriteRenderer.material.color = _colorTransparent;
+            UpdateRenderersForInvisibility(true);
             _playerManager.IsInvisible = true;
         }
     }
@@ -43,9 +46,27 @@ public class Invisibility : PowerUp
     {
         if (_playerManager.IsInvisible)
         {
-            _spriteRenderer.material.color = _colorOriginal;
+            UpdateRenderersForInvisibility(false);
             _playerManager.IsInvisible = false;
             Destroy(gameObject);
+        }
+    }
+
+    private void UpdateRenderersForInvisibility(bool onStartInvisibility)
+    {
+        if (onStartInvisibility)
+        {
+            foreach(Renderer renderer in _playerRenderers)
+            {
+                renderer.material.SetFloat(HOLOGRAM, 1);
+            }
+        }
+        else
+        {
+            foreach (Renderer renderer in _playerRenderers)
+            {
+                renderer.material.SetFloat(HOLOGRAM, 0);
+            }
         }
     }
 }
