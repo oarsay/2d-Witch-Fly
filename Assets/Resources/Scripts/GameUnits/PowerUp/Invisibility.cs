@@ -4,11 +4,8 @@ using UnityEngine;
 using System.Linq;
 public class Invisibility : PowerUp
 {
-    private PlayerManager _playerManager;
     private List<Renderer> _playerRenderers;
-    private Color _colorOriginal;
-    private Color _colorTransparent;
-    private float _transparencyAmount = 0.1f;
+    private PlayerManager _playerManager;
 
     // Hologram effect property names
     private readonly string HOLOGRAM = "_HologramBlend";

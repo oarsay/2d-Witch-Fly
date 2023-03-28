@@ -111,8 +111,8 @@ Material:
     - _FadeBurnWidth: 0.025
     - _FishEyeUvAmount: 0.35
     - _FlickerAlpha: 0
-    - _FlickerFreq: 0.2
-    - _FlickerPercent: 0.05
+    - _FlickerFreq: 0.3
+    - _FlickerPercent: 0.1
     - _GhostBlend: 0.703
     - _GhostColorBoost: 1
     - _GhostTransparency: 1
@@ -139,7 +139,7 @@ Material:
     - _HologramBlend: 0
     - _HologramMaxAlpha: 0.75
     - _HologramMinAlpha: 0.1
-    - _HologramStripesAmount: 0.1
+    - _HologramStripesAmount: 0.2
     - _HologramStripesSpeed: 4
     - _HologramUnmodAmount: 0
     - _HsvBright: 1
@@ -169,7 +169,7 @@ Material:
     - _OutlinePixelWidth: 1
     - _OutlineTexXSpeed: 10
     - _OutlineTexYSpeed: 0
-    - _OutlineWidth: 0.004
+    - _OutlineWidth: 0.05
     - _OverlayBlend: 1
     - _OverlayGlow: 1
     - _PinchUvAmount: 0.35
@@ -185,8 +185,8 @@ Material:
     - _ShadowAlpha: 0.5
     - _ShadowX: 0.1
     - _ShadowY: -0.05
-    - _ShakeUvSpeed: 2.5
-    - _ShakeUvX: 1.5
+    - _ShakeUvSpeed: 1
+    - _ShakeUvX: 0
     - _ShakeUvY: 1
     - _ShineGlow: 1
     - _ShineLocation: 0.5
@@ -226,9 +226,9 @@ Material:
     - _GradTopRightCol: {r: 1, g: 1, b: 0, a: 1}
     - _GreyscaleTintColor: {r: 1, g: 1, b: 1, a: 1}
     - _HitEffectColor: {r: 1, g: 1, b: 1, a: 1}
-    - _HologramStripeColor: {r: 0, g: 0.5283019, b: 0.5283019, a: 1}
+    - _HologramStripeColor: {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 1}
     - _InnerOutlineColor: {r: 1, g: 0, b: 0, a: 1}
-    - _OutlineColor: {r: 1, g: 1, b: 1, a: 1}
+    - _OutlineColor: {r: 1, g: 0.50132096, b: 0, a: 1}
     - _OverlayColor: {r: 1, g: 1, b: 1, a: 1}
     - _ShadowColor: {r: 0, g: 0, b: 0, a: 1}
     - _ShineColor: {r: 1, g: 1, b: 1, a: 1}
