@@ -6,7 +6,7 @@ public class PowerUpManager : MonoBehaviour
     //All power-up models (will be loaded from Resources folder)
     private static GameObject[] _powerupPrefabs;
     private Transform _player;
-    private float _spawnRateInSeconds = 30;
+    private float _spawnRateInSeconds = 40;
     private float _minSpawnDistanceToPlayer = 15f;
     private void Awake()
     {
@@ -37,7 +37,7 @@ public class PowerUpManager : MonoBehaviour
         // Select power-up type
         int prefabIndex = SelectRandomPowerupPrefabIndex();
 
-        Instantiate(_powerupPrefabs[1], candidateSpawnPosition, Quaternion.identity);
+        Instantiate(_powerupPrefabs[prefabIndex], candidateSpawnPosition, Quaternion.identity);
     }
 
     private int SelectRandomPowerupPrefabIndex()

@@ -38,5 +38,5 @@ public static class Tags
     // ===== EDITOR =====
     // Address
     public const string CHILDREN_PREFABS_LOCATION = "Prefabs/Children";
-        public const string POWERUP_PREFABS_LOCATION = "Prefabs/Environment/Power-Ups";
+    public const string POWERUP_PREFABS_LOCATION = "Prefabs/Environment/Power-Ups";
 }

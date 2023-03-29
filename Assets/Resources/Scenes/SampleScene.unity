@@ -464,6 +464,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!4 &229605270 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2454487189886153238, guid: 85497ee0776ea554fa5e81951f677342, type: 3}
+  m_PrefabInstance: {fileID: 2169794182039372741}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &229605272 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2454487189886153449, guid: 85497ee0776ea554fa5e81951f677342, type: 3}
+  m_PrefabInstance: {fileID: 2169794182039372741}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &291252293
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1054,6 +1064,7 @@ Transform:
   - {fileID: 1429427637}
   - {fileID: 350223144}
   - {fileID: 1747522502}
+  - {fileID: 229605270}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3753,6 +3764,7 @@ MonoBehaviour:
   angleZ: 2
   _leafPrefab: {fileID: 4917610038801425553, guid: 1c724905c946a924d8449aa0b900247f, type: 3}
   _smokePrefab: {fileID: 1292211345376930, guid: 2afd58de8f3ab874081725ccf9c852ff, type: 3}
+  _speedLinesParticleSystem: {fileID: 229605272}
 --- !u!1 &2033296599
 GameObject:
   m_ObjectHideFlags: 0
@@ -4234,16 +4246,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 066f67d5a27e2d94ea03d3c4c05cd03f, type: 3}
---- !u!1001 &2454487189307982742
+--- !u!1001 &2169794182039372741
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 519420032}
     m_Modifications:
     - target: {fileID: 2454487189886153238, guid: 85497ee0776ea554fa5e81951f677342, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2454487189886153238, guid: 85497ee0776ea554fa5e81951f677342, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4255,7 +4267,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2454487189886153238, guid: 85497ee0776ea554fa5e81951f677342, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2454487189886153238, guid: 85497ee0776ea554fa5e81951f677342, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4285,9 +4297,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2454487189886153449, guid: 85497ee0776ea554fa5e81951f677342, type: 3}
+      propertyPath: prewarm
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2454487189886153449, guid: 85497ee0776ea554fa5e81951f677342, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2454487189886153451, guid: 85497ee0776ea554fa5e81951f677342, type: 3}
       propertyPath: m_Name
       value: Speedline VFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 2454487189886153451, guid: 85497ee0776ea554fa5e81951f677342, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85497ee0776ea554fa5e81951f677342, type: 3}

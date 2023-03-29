@@ -10,6 +10,8 @@ public class VFXManager : MonoBehaviour
         [SerializeField] private GameObject _leafPrefab;
     [Header("Bursting Smoke VFX")]
         [SerializeField] private GameObject _smokePrefab;
+    [Header("Speed Lines VFX")]
+        [SerializeField] private ParticleSystem _speedLinesParticleSystem;
     public void CreateDashEffect(Vector3 startPosition, Vector3 endPosition)
     {
         GameObject dash = Instantiate(_dashPrefab, startPosition, Quaternion.identity);
@@ -43,5 +45,24 @@ public class VFXManager : MonoBehaviour
             // if child is coming from right, burst smoke to the left
             smoke.transform.localEulerAngles = new Vector3(0, 0, 90);
         }
+    }
+
+    /// <summary>
+    /// Enable or disable SpeedLineVFX Particle System attached to main camera.
+    /// </summary>
+    /// <param name="enable">True to enable, false to disable</param>
+    public void SetSpeedLineVFX(bool enable)
+    {
+        if(enable)
+        {
+            if(!_speedLinesParticleSystem.isPlaying)
+                _speedLinesParticleSystem.Play();
+        }
+        else
+        {
+            if (_speedLinesParticleSystem.isPlaying)
+                _speedLinesParticleSystem.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        }
+        
     }
 }
