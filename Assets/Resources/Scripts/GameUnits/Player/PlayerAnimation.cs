@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class PlayerAnimation : MonoBehaviour
 {
     private Animator _animator;
+    public List<Renderer> renderers;
 
     // Animation parameters
     const string ON_SPEED = "onSpeed";
@@ -13,6 +15,7 @@ public class PlayerAnimation : MonoBehaviour
     void Start()
     {
         _animator = GetComponent<Animator>();
+        renderers = GetComponentsInChildren<Renderer>().ToList();
     }
 
     public void OnChildHunt()

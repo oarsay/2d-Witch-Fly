@@ -4,15 +4,16 @@ using UnityEngine;
 using System.Linq;
 public class Invisibility : PowerUp
 {
-    private List<Renderer> _playerRenderers;
     private PlayerManager _playerManager;
+    private PlayerAnimation _playerAnimation;
 
     // Hologram effect property names
     private readonly string HOLOGRAM = "_HologramBlend";
     private void Awake()
     {
-        _playerManager = GameObject.FindGameObjectWithTag(Tags.PLAYER).GetComponent<PlayerManager>();
-        _playerRenderers = GameObject.FindGameObjectWithTag(Tags.PLAYER).GetComponentsInChildren<Renderer>().ToList();
+        var player = GameObject.FindGameObjectWithTag(Tags.PLAYER);
+        _playerManager = player.GetComponent<PlayerManager>();
+        _playerAnimation = player.GetComponent<PlayerAnimation>();
         effectDuration = new WaitForSeconds(10f);
         StartCoroutine(nameof(base.AutoDestroy));
     }
@@ -53,14 +54,14 @@ public class Invisibility : PowerUp
     {
         if (onStartInvisibility)
         {
-            foreach(Renderer renderer in _playerRenderers)
+            foreach(Renderer renderer in _playerAnimation.renderers)
             {
                 renderer.material.SetFloat(HOLOGRAM, 1);
             }
         }
         else
         {
-            foreach (Renderer renderer in _playerRenderers)
+            foreach (Renderer renderer in _playerAnimation.renderers)
             {
                 renderer.material.SetFloat(HOLOGRAM, 0);
             }

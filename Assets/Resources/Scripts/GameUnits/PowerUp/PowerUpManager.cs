@@ -16,7 +16,8 @@ public class PowerUpManager : MonoBehaviour
     private void Start()
     {
         _player = GameObject.FindGameObjectWithTag(Tags.PLAYER).transform;
-        InvokeRepeating(nameof(SpawnPowerUp), _spawnRateInSeconds/2, _spawnRateInSeconds);
+        //InvokeRepeating(nameof(SpawnPowerUp), _spawnRateInSeconds/2, _spawnRateInSeconds);
+        InvokeRepeating(nameof(SpawnPowerUp), 3, _spawnRateInSeconds);
     }
 
     private void LoadPowerupPrefabs()
@@ -36,8 +37,8 @@ public class PowerUpManager : MonoBehaviour
 
         // Select power-up type
         int prefabIndex = SelectRandomPowerupPrefabIndex();
-
-        Instantiate(_powerupPrefabs[prefabIndex], candidateSpawnPosition, Quaternion.identity);
+        // 0: invisibility, 1: speed
+        Instantiate(_powerupPrefabs[1], candidateSpawnPosition, Quaternion.identity);
     }
 
     private int SelectRandomPowerupPrefabIndex()

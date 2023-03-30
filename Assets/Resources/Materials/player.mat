@@ -152,8 +152,8 @@ Material:
     - _MaxYUV: 1
     - _MinXUV: 0
     - _MinYUV: 0
-    - _MotionBlurAngle: 0.1
-    - _MotionBlurDist: 1.25
+    - _MotionBlurAngle: 0.25
+    - _MotionBlurDist: 0
     - _MyDstMode: 10
     - _MySrcMode: 5
     - _NegativeAmount: 1

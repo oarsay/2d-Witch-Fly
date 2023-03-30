@@ -122,6 +122,9 @@ public class ChildManager : MonoBehaviour
         transform.SetParent(_hook);
         transform.position = _hook.position;
         transform.Rotate(new(0, 0, 90));
+        var sprite = GetComponent<SpriteRenderer>();
+        sprite.sortingLayerName = "Foreground";
+        sprite.sortingOrder = -1;
     }
 
     public void OnFall()
@@ -134,6 +137,9 @@ public class ChildManager : MonoBehaviour
         {
             state = ChildState.Fall;
             transform.SetParent(null);
+            var sprite = GetComponent<SpriteRenderer>();
+            sprite.sortingLayerName = "Mid";
+            sprite.sortingOrder = -3;
         }
     }
 
