@@ -71,4 +71,6 @@ public class VFXManager : MonoBehaviour
     {
         Instantiate(_splashPrefab);
     }
+
+
 }
