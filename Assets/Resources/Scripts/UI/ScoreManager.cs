@@ -5,7 +5,9 @@ using System;
 public class ScoreManager : MonoBehaviour
 {
     [Header("Component")]
-    [SerializeField] private TextMeshProUGUI _timerText;
+    [SerializeField] private TextMeshProUGUI _scoreText;
+    [SerializeField] private TextMeshProUGUI _scoreRewardText;
+    private string _floatingTextAnimationStateName = "FloatingText";
 
     [Header("Score Settings")]
     [SerializeField] [Range(MIN_MULTIPLIER, MAX_MULTIPLIER)] private float _multiplier;
@@ -13,7 +15,7 @@ public class ScoreManager : MonoBehaviour
     private const float MAX_MULTIPLIER = 5;
     private float _currentScore;
     private readonly float _basePoint = 1;
-    private readonly float _extraScorePerChild = 1500;
+    private readonly float _scoreRewardPerChild = 1500;
 
     private Transform _player;
     private float _playerLowestPosition;
@@ -24,6 +26,7 @@ public class ScoreManager : MonoBehaviour
         _player = GameObject.FindGameObjectWithTag(Tags.PLAYER).transform;
         _playerLowestPosition = _player.GetComponent<PlayerMovement>().ScreenBoundaryVerticalBottom;
         _playerHighestPosition = _player.GetComponent<PlayerMovement>().ScreenBoundaryVerticalUpper;
+        _scoreRewardText.text = "+" + _scoreRewardPerChild;
     }
 
     private void Update()
@@ -45,13 +48,19 @@ public class ScoreManager : MonoBehaviour
 
     private void UpdateScoreUI()
     {
-        _timerText.text = ((int)_currentScore).ToString();
+        _scoreText.text = ((int)_currentScore).ToString();
     }
 
     public void AddExtraScoreForChild()
     {
-        _currentScore += _extraScorePerChild;
+        _currentScore += _scoreRewardPerChild;
         UpdateScoreUI();
+        SpawnFloatingText();
+    }
+
+    private void SpawnFloatingText()
+    {
+        _scoreRewardText.GetComponent<Animator>().Play(_floatingTextAnimationStateName);
     }
 
     private static float Remap(float input, float oldLow, float oldHigh, float newLow, float newHigh)
