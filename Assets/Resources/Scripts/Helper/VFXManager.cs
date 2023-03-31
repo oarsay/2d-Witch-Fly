@@ -12,6 +12,8 @@ public class VFXManager : MonoBehaviour
         [SerializeField] private GameObject _smokePrefab;
     [Header("Speed Lines VFX")]
         [SerializeField] private ParticleSystem _speedLinesParticleSystem;
+    [Header("Cauldron Splash VFX")]
+        [SerializeField] private ParticleSystem _splashPrefab;
     public void CreateDashEffect(Vector3 startPosition, Vector3 endPosition)
     {
         GameObject dash = Instantiate(_dashPrefab, startPosition, Quaternion.identity);
@@ -63,6 +65,10 @@ public class VFXManager : MonoBehaviour
             if (_speedLinesParticleSystem.isPlaying)
                 _speedLinesParticleSystem.Stop(true, ParticleSystemStopBehavior.StopEmitting);
         }
-        
+    }
+
+    public void CreateSplashEffect()
+    {
+        Instantiate(_splashPrefab);
     }
 }
