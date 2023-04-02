@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -27,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     private float _screenBoundaryVerticalBottom;
     private float _currentMoveSpeedVertical = 3f;
     private Direction _directionVertical = Direction.Up;
+    [SerializeField] private GameObject _model;
 
     // properties
     public float ScreenBoundaryVerticalUpper => _screenBoundaryVerticalUpper;
@@ -109,6 +111,25 @@ public class PlayerMovement : MonoBehaviour
                 transform.position -= (moveAmount * Time.deltaTime);
             }
             else ExceptionHandler.Throw("PlayerMovement.cs/Move/Unknown direction state in vertical movement!");
+        }
+        UpdateVerticalRotationOfSprites();
+    }
+
+    private void UpdateVerticalRotationOfSprites()
+    {
+        if (_directionVertical == Direction.Up)
+        {
+            if (_model.transform.localEulerAngles.z > 4)
+            {
+                _model.transform.Rotate(Vector3.forward, -1);
+            }
+        }
+        else if (_directionVertical == Direction.Down)
+        {
+            if (_model.transform.localEulerAngles.z < 24)
+            {
+                _model.transform.Rotate(Vector3.forward, 1);
+            }
         }
     }
     private bool IsOutOfHorizontalBoundary()

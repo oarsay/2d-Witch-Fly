@@ -38,7 +38,7 @@ public class PowerUpManager : MonoBehaviour
         // Select power-up type
         int prefabIndex = SelectRandomPowerupPrefabIndex();
         // 0: invisibility, 1: speed
-        Instantiate(_powerupPrefabs[prefabIndex], candidateSpawnPosition, Quaternion.identity);
+        Instantiate(_powerupPrefabs[1], candidateSpawnPosition, Quaternion.identity);
     }
 
     private int SelectRandomPowerupPrefabIndex()
