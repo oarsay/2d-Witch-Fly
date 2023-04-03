@@ -15,6 +15,7 @@ public class ChildManager : MonoBehaviour
     private Transform _witch;
     private Transform _hook;
     private PlayerManager _witchManager;
+    private VFXManager _vfxManager;
     private HidingSpot _hidingSpot;
     private Rigidbody2D _rigidbody;
     [HideInInspector] public ChildMovement _childMovement;
@@ -39,6 +40,7 @@ public class ChildManager : MonoBehaviour
         _hook = GameObject.FindGameObjectWithTag(Tags.HOOK).transform;
         _witch = GameObject.FindGameObjectWithTag(Tags.PLAYER).transform;
         _witchManager = _witch.GetComponent<PlayerManager>();
+        _vfxManager = GameObject.Find(Tags.VFX_MANAGER).GetComponent<VFXManager>();
 
         ChildManager.numberOfChildren++;
         state = ChildState.Walk;
@@ -54,6 +56,7 @@ public class ChildManager : MonoBehaviour
                     state = ChildState.Flee;
                     ResetFleeTimer();
                     _gameEventOnChildFlee.TriggerEvent();
+                    _vfxManager.CreateScreamEmoji(transform.position, transform);
                 }
                 break;
             case ChildState.Flee:

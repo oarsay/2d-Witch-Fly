@@ -20001,8 +20001,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.57, y: 4.22}
+  m_Offset: {x: -0, y: 0.494725}
+  m_Size: {x: 0.57, y: 3.2305503}
   m_Direction: 0
 --- !u!114 &1924653137
 MonoBehaviour:
@@ -20188,6 +20188,8 @@ MonoBehaviour:
   _smokePrefab: {fileID: 1292211345376930, guid: 2afd58de8f3ab874081725ccf9c852ff, type: 3}
   _speedLinesParticleSystem: {fileID: 229605272}
   _splashPrefab: {fileID: 198039942544698878, guid: 77c69ec12208c4c4380d15e30b6f8f68, type: 3}
+  _devilEmojiPrefab: {fileID: 9058777992414271766, guid: 462e0e04014160e43bcd12e2100b076b, type: 3}
+  _screamEmojiPrefab: {fileID: 6882918759034861382, guid: c3b9a81edeb56db49a1dde2a9431a19a, type: 3}
 --- !u!114 &1981043412
 MonoBehaviour:
   m_ObjectHideFlags: 0

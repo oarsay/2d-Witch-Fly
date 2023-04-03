@@ -14,6 +14,9 @@ public class VFXManager : MonoBehaviour
         [SerializeField] private ParticleSystem _speedLinesParticleSystem;
     [Header("Cauldron Splash VFX")]
         [SerializeField] private ParticleSystem _splashPrefab;
+    [Header("Emoji VFXs")]
+        [SerializeField] private GameObject _devilEmojiPrefab;
+        [SerializeField] private GameObject _screamEmojiPrefab;
     public void CreateDashEffect(Vector3 startPosition, Vector3 endPosition)
     {
         GameObject dash = Instantiate(_dashPrefab, startPosition, Quaternion.identity);
@@ -72,5 +75,13 @@ public class VFXManager : MonoBehaviour
         Instantiate(_splashPrefab);
     }
 
-
+    public void CreateDevilEmoji(Vector3 position)
+    {
+        Instantiate(_devilEmojiPrefab, position, Quaternion.identity);
+    }
+    public void CreateScreamEmoji(Vector3 position, Transform childTransform)
+    {
+        var emoji = Instantiate(_screamEmojiPrefab, position, Quaternion.identity);
+        emoji.GetComponent<EmojiFollowTarget>().target = childTransform;
+    }
 }
