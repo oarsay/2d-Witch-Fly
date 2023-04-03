@@ -20189,7 +20189,11 @@ MonoBehaviour:
   _smokePrefab: {fileID: 1292211345376930, guid: 2afd58de8f3ab874081725ccf9c852ff, type: 3}
   _speedLinesParticleSystem: {fileID: 229605272}
   _splashPrefab: {fileID: 198039942544698878, guid: 77c69ec12208c4c4380d15e30b6f8f68, type: 3}
-  _devilEmojiPrefab: {fileID: 9058777992414271766, guid: 462e0e04014160e43bcd12e2100b076b, type: 3}
+  _devilEmojiPrefabs:
+  - {fileID: 9058777992414271766, guid: 462e0e04014160e43bcd12e2100b076b, type: 3}
+  - {fileID: 5554555439201107284, guid: d050666f1ad065843bfe41d3b4f91376, type: 3}
+  - {fileID: 5550993659967657842, guid: d81f8017f49844b4d9b0956b7dfac6af, type: 3}
+  - {fileID: 68613516283615714, guid: b2df3cc747e00174c82a0a0a40a6b2b9, type: 3}
   _screamEmojiPrefabs:
   - {fileID: 6882918759034861382, guid: c3b9a81edeb56db49a1dde2a9431a19a, type: 3}
   - {fileID: 4131677527186775640, guid: 396502904500612459d7f13753747427, type: 3}

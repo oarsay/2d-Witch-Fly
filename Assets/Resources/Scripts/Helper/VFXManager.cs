@@ -15,7 +15,7 @@ public class VFXManager : MonoBehaviour
     [Header("Cauldron Splash VFX")]
         [SerializeField] private ParticleSystem _splashPrefab;
     [Header("Emoji VFXs")]
-        [SerializeField] private GameObject _devilEmojiPrefab;
+        [SerializeField] private GameObject[] _devilEmojiPrefabs;
         [SerializeField] private GameObject[] _screamEmojiPrefabs;
     public void CreateDashEffect(Vector3 startPosition, Vector3 endPosition)
     {
@@ -77,17 +77,18 @@ public class VFXManager : MonoBehaviour
 
     public void CreateDevilEmoji(Transform witchTransform)
     {
-        var emoji = Instantiate(_devilEmojiPrefab, witchTransform.position, Quaternion.identity);
+        int prefabIndex = SelectRandomIndexFromPrefabsArray(_devilEmojiPrefabs.Length);
+        var emoji = Instantiate(_devilEmojiPrefabs[prefabIndex], witchTransform.position, Quaternion.identity);
         emoji.GetComponent<EmojiFollowTarget>().target = witchTransform;
     }
     public void CreateScreamEmoji(Transform childTransform)
     {
-        int prefabIndex = SelectRandomScreamPrefabIndex();
+        int prefabIndex = SelectRandomIndexFromPrefabsArray(_screamEmojiPrefabs.Length);
         var emoji = Instantiate(_screamEmojiPrefabs[prefabIndex], childTransform.position, Quaternion.identity);
         emoji.GetComponent<EmojiFollowTarget>().target = childTransform;
     }
-    private int SelectRandomScreamPrefabIndex()
+    private int SelectRandomIndexFromPrefabsArray(int length)
     {
-        return Random.Range(0, _screamEmojiPrefabs.Length);
+        return Random.Range(0, length);
     }
 }
