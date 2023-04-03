@@ -56,7 +56,7 @@ public class ChildManager : MonoBehaviour
                     state = ChildState.Flee;
                     ResetFleeTimer();
                     _gameEventOnChildFlee.TriggerEvent();
-                    _vfxManager.CreateScreamEmoji(transform.position, transform);
+                    _vfxManager.CreateScreamEmoji(transform);
                 }
                 break;
             case ChildState.Flee:

@@ -75,13 +75,14 @@ public class VFXManager : MonoBehaviour
         Instantiate(_splashPrefab);
     }
 
-    public void CreateDevilEmoji(Vector3 position)
+    public void CreateDevilEmoji(Transform witchTransform)
     {
-        Instantiate(_devilEmojiPrefab, position, Quaternion.identity);
+        var emoji = Instantiate(_devilEmojiPrefab, witchTransform.position, Quaternion.identity);
+        emoji.GetComponent<EmojiFollowTarget>().target = witchTransform;
     }
-    public void CreateScreamEmoji(Vector3 position, Transform childTransform)
+    public void CreateScreamEmoji(Transform childTransform)
     {
-        var emoji = Instantiate(_screamEmojiPrefab, position, Quaternion.identity);
+        var emoji = Instantiate(_screamEmojiPrefab, childTransform.position, Quaternion.identity);
         emoji.GetComponent<EmojiFollowTarget>().target = childTransform;
     }
 }
