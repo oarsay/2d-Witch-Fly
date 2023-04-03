@@ -20190,7 +20190,12 @@ MonoBehaviour:
   _speedLinesParticleSystem: {fileID: 229605272}
   _splashPrefab: {fileID: 198039942544698878, guid: 77c69ec12208c4c4380d15e30b6f8f68, type: 3}
   _devilEmojiPrefab: {fileID: 9058777992414271766, guid: 462e0e04014160e43bcd12e2100b076b, type: 3}
-  _screamEmojiPrefab: {fileID: 6882918759034861382, guid: c3b9a81edeb56db49a1dde2a9431a19a, type: 3}
+  _screamEmojiPrefabs:
+  - {fileID: 6882918759034861382, guid: c3b9a81edeb56db49a1dde2a9431a19a, type: 3}
+  - {fileID: 4131677527186775640, guid: 396502904500612459d7f13753747427, type: 3}
+  - {fileID: 5679554031313772438, guid: 54ec90e291d3e9040ba5ada0a13e12af, type: 3}
+  - {fileID: 1665788777840739793, guid: 5f70a5a51eaabf34fad85b5d025fc2c3, type: 3}
+  - {fileID: 3031795549096171793, guid: c15a67465b2b44d4980e4c5cafb511b1, type: 3}
 --- !u!114 &1981043412
 MonoBehaviour:
   m_ObjectHideFlags: 0

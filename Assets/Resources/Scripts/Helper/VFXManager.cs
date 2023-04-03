@@ -16,7 +16,7 @@ public class VFXManager : MonoBehaviour
         [SerializeField] private ParticleSystem _splashPrefab;
     [Header("Emoji VFXs")]
         [SerializeField] private GameObject _devilEmojiPrefab;
-        [SerializeField] private GameObject _screamEmojiPrefab;
+        [SerializeField] private GameObject[] _screamEmojiPrefabs;
     public void CreateDashEffect(Vector3 startPosition, Vector3 endPosition)
     {
         GameObject dash = Instantiate(_dashPrefab, startPosition, Quaternion.identity);
@@ -82,7 +82,12 @@ public class VFXManager : MonoBehaviour
     }
     public void CreateScreamEmoji(Transform childTransform)
     {
-        var emoji = Instantiate(_screamEmojiPrefab, childTransform.position, Quaternion.identity);
+        int prefabIndex = SelectRandomScreamPrefabIndex();
+        var emoji = Instantiate(_screamEmojiPrefabs[prefabIndex], childTransform.position, Quaternion.identity);
         emoji.GetComponent<EmojiFollowTarget>().target = childTransform;
+    }
+    private int SelectRandomScreamPrefabIndex()
+    {
+        return Random.Range(0, _screamEmojiPrefabs.Length);
     }
 }
