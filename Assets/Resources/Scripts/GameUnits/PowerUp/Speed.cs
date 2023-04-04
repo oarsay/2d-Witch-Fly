@@ -7,7 +7,7 @@ public class Speed : PowerUp
     [SerializeField] private GameEvent _gameEventOnSpeedBuffEnd;
     private PlayerMovement _playerMovement;
     private PlayerManager _playerManager;
-    private PlayerAnimation _playerAnimation;
+    //private PlayerAnimation _playerAnimation;
     private VFXManager _vfxManager;
     private readonly float _horizontalSpeedBuffAmount = 3f;
     private readonly float _verticalSpeedBuffAmount = 2f;
@@ -40,7 +40,7 @@ public class Speed : PowerUp
         _playerMovement.BaseMoveSpeedHorizontal += _horizontalSpeedBuffAmount;
         _playerMovement.CurrentMoveSpeedVertical += _verticalSpeedBuffAmount;
         _vfxManager.SetSpeedLineVFX(true);
-        UpdateRenderersForMotionBlur(true);
+        UpdatePlayerRenderers(MOTION_BLUR, 1);
     }
 
     public override void EndEffect()
@@ -49,33 +49,7 @@ public class Speed : PowerUp
         _playerMovement.BaseMoveSpeedHorizontal -= _horizontalSpeedBuffAmount;
         _playerMovement.CurrentMoveSpeedVertical -= _verticalSpeedBuffAmount;
         _vfxManager.SetSpeedLineVFX(false);
-        UpdateRenderersForMotionBlur(false);
+        UpdatePlayerRenderers(MOTION_BLUR, 0);
         Destroy(gameObject);
-    }
-
-    private void UpdateRenderersForMotionBlur(bool onStartMotionBlur)
-    {
-        if (_playerAnimation == null) Debug.Log("null");
-
-        if (onStartMotionBlur)
-        {
-            foreach (Renderer renderer in _playerAnimation.renderers)
-            {
-                MaterialPropertyBlock materialProperty = new();
-                renderer.GetPropertyBlock(materialProperty);
-                materialProperty.SetFloat(MOTION_BLUR, 1);
-                renderer.SetPropertyBlock(materialProperty);
-            }
-        }
-        else
-        {
-            foreach (Renderer renderer in _playerAnimation.renderers)
-            {
-                MaterialPropertyBlock materialProperty = new();
-                renderer.GetPropertyBlock(materialProperty);
-                materialProperty.SetFloat(MOTION_BLUR, 0);
-                renderer.SetPropertyBlock(materialProperty);
-            }
-        }
     }
 }

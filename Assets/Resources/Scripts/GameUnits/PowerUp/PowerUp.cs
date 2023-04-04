@@ -3,10 +3,12 @@ using UnityEngine;
 
 public abstract class PowerUp: MonoBehaviour
 {
-    protected WaitForSeconds effectDuration;
-    private WaitForSeconds _lifeSpan = new(25f);
+    protected static PlayerAnimation _playerAnimation;
 
-    // we shouldn't destroy a power-up while it is performing its effect
+    protected WaitForSeconds effectDuration;
+    private readonly WaitForSeconds _lifeSpan = new(25f);
+
+    // we shouldn't destroy a power-up while it is performing its effect on the player
     // therefore before destroying. we need to check if this power-up is in use or not
     private bool _onDestroyAvailable = true;
     public abstract void Apply();
@@ -30,6 +32,14 @@ public abstract class PowerUp: MonoBehaviour
         if (_onDestroyAvailable)
         {
             Destroy(gameObject);
+        }
+    }
+
+    protected void UpdatePlayerRenderers(string propertyName, float newValue)
+    {
+        foreach (Renderer renderer in _playerAnimation.renderers)
+        {
+            renderer.material.SetFloat(propertyName, newValue);
         }
     }
 }

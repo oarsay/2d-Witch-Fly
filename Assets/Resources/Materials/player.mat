@@ -11,6 +11,7 @@ Material:
   m_Shader: {fileID: 4800000, guid: a36b7719ff0465b42ab1407d67672c5f, type: 3}
   m_ValidKeywords:
   - HOLOGRAM_ON
+  - MOTIONBLUR_ON
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -152,7 +153,7 @@ Material:
     - _MaxYUV: 1
     - _MinXUV: 0
     - _MinYUV: 0
-    - _MotionBlurAngle: 0.25
+    - _MotionBlurAngle: 0.53
     - _MotionBlurDist: 0
     - _MyDstMode: 10
     - _MySrcMode: 5

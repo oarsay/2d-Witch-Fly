@@ -5,7 +5,7 @@ using System.Linq;
 public class Invisibility : PowerUp
 {
     private PlayerManager _playerManager;
-    private PlayerAnimation _playerAnimation;
+    //private PlayerAnimation _playerAnimation;
 
     // Hologram effect property names
     private readonly string HOLOGRAM = "_HologramBlend";
@@ -36,7 +36,7 @@ public class Invisibility : PowerUp
     {
         if (!_playerManager.IsInvisible)
         {
-            UpdateRenderersForInvisibility(true);
+            UpdatePlayerRenderers(HOLOGRAM, 1);
             _playerManager.IsInvisible = true;
         }
     }
@@ -44,27 +44,9 @@ public class Invisibility : PowerUp
     {
         if (_playerManager.IsInvisible)
         {
-            UpdateRenderersForInvisibility(false);
+            UpdatePlayerRenderers(HOLOGRAM, 0);
             _playerManager.IsInvisible = false;
             Destroy(gameObject);
-        }
-    }
-
-    private void UpdateRenderersForInvisibility(bool onStartInvisibility)
-    {
-        if (onStartInvisibility)
-        {
-            foreach(Renderer renderer in _playerAnimation.renderers)
-            {
-                renderer.material.SetFloat(HOLOGRAM, 1);
-            }
-        }
-        else
-        {
-            foreach (Renderer renderer in _playerAnimation.renderers)
-            {
-                renderer.material.SetFloat(HOLOGRAM, 0);
-            }
         }
     }
 }
