@@ -6,16 +6,14 @@ using System.Linq;
 public class PlayerAnimation : MonoBehaviour
 {
     private Animator _animator;
+    [SerializeField] private ParticleSystem[] _tailParticleSystems;
+    [SerializeField] private float _tailStartLifetimeOnIdle;
+    [SerializeField] private float _tailStartLifetimeOnSpeed;
     [HideInInspector] public List<Renderer> renderers;
 
     // Animation parameters
     const string ON_SPEED = "onSpeed";
     const string LAUGH = "laugh";
-
-    // AllinOneShader shine effect property names
-    private readonly string SHINE_POSITION = "_ShineLocation";
-    private readonly string SHINE_INTENSITY = "_ShineGlow";
-    [SerializeField] private float _shineEffectSpeed = 1.2f;
 
     void Start()
     {
@@ -31,70 +29,20 @@ public class PlayerAnimation : MonoBehaviour
     public void StartSpeedBuffAnimation()
     {
         _animator.SetBool(ON_SPEED, true);
-        StartCoroutine(nameof(PlayShineEffect));
+        foreach(ParticleSystem tailParticleSystem in _tailParticleSystems)
+        {
+            var main = tailParticleSystem.main;
+            main.startLifetime = _tailStartLifetimeOnSpeed;
+        }
     }
 
     public void EndSpeedBuffAnimation()
     {
         _animator.SetBool(ON_SPEED, false);
-    }
-
-    private IEnumerator PlayShineEffect()
-    {
-        // init shine values
-        float currentPosition = 0;
-        float currentIntensity = 0;
-        foreach (Renderer renderer in renderers)
+        foreach (ParticleSystem tailParticleSystem in _tailParticleSystems)
         {
-            renderer.material.SetFloat(SHINE_INTENSITY, 1);
-            renderer.material.SetFloat(SHINE_POSITION, 0);
-        }
-
-        //while(currentIntensity < 1)
-        //{
-        //    foreach (Renderer renderer in renderers)
-        //    {
-        //        renderer.material.SetFloat(SHINE_INTENSITY, currentIntensity);
-        //    }
-        //    currentIntensity += _shineEffectSpeed * Time.deltaTime * 2;
-        //    yield return null;
-        //}
-
-        // move shine effect
-        while (currentPosition < 1)
-        {
-            foreach (Renderer renderer in renderers)
-            {
-                renderer.material.SetFloat(SHINE_POSITION, currentPosition);
-            }
-            currentPosition += _shineEffectSpeed * Time.deltaTime;
-            yield return null;
-        }
-
-        //while (currentIntensity > 0)
-        //{
-        //    foreach (Renderer renderer in renderers)
-        //    {
-        //        renderer.material.SetFloat(SHINE_INTENSITY, currentIntensity);
-        //    }
-        //    currentIntensity -= _shineEffectSpeed * Time.deltaTime * 2;
-        //    yield return null;
-        //}
-
-        // end shine effect
-        foreach (Renderer renderer in renderers)
-        {
-            renderer.material.SetFloat(SHINE_INTENSITY, 0);
-            renderer.material.SetFloat(SHINE_POSITION, 1);
+            var main = tailParticleSystem.main;
+            main.startLifetime = _tailStartLifetimeOnIdle;
         }
     }
-
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            StartCoroutine(nameof(PlayShineEffect));
-        }
-    }
-
 }
