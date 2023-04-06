@@ -7,15 +7,23 @@ public class Speed : PowerUp
     [SerializeField] private GameEvent _gameEventOnSpeedBuffEnd;
     private PlayerMovement _playerMovement;
     private PlayerManager _playerManager;
-    //private PlayerAnimation _playerAnimation;
+    private CameraZoom _mainCamera;
     private VFXManager _vfxManager;
     private readonly float _horizontalSpeedBuffAmount = 3f;
     private readonly float _verticalSpeedBuffAmount = 2f;
 
-    // Motion blur effect property names
-    private readonly string MOTION_BLUR = "_MotionBlurDist";
+    // Motion blur effect property
+    private readonly string BLUR = "_BlurIntensity";
+    private float _blurAmountOnIdle = 0f;
+    private float _blurAmountOnSpeed = 2.2f;
+
+    // Camera zoom effect properties
+    private float _projectionSizeOnIdle = 9f;
+    private float _projectionSizeOnSpeed = 10f;
+    private float _cameraZoomTransitionDuration = 0.3f;
     private void Awake()
     {
+        _mainCamera = GameObject.FindGameObjectWithTag(Tags.CAMERA).GetComponent<CameraZoom>();
         var player = GameObject.FindGameObjectWithTag(Tags.PLAYER);
         _playerManager =  player.GetComponent<PlayerManager>();
         _playerMovement = player.GetComponent<PlayerMovement>();
@@ -40,7 +48,8 @@ public class Speed : PowerUp
         _playerMovement.BaseMoveSpeedHorizontal += _horizontalSpeedBuffAmount;
         _playerMovement.CurrentMoveSpeedVertical += _verticalSpeedBuffAmount;
         _vfxManager.SetSpeedLineVFX(true);
-        UpdatePlayerRenderers(MOTION_BLUR, 1);
+        UpdatePlayerRenderers(BLUR, _blurAmountOnSpeed);
+        _mainCamera.ZoomEffect(_projectionSizeOnSpeed, _cameraZoomTransitionDuration);
     }
 
     public override void EndEffect()
@@ -49,7 +58,8 @@ public class Speed : PowerUp
         _playerMovement.BaseMoveSpeedHorizontal -= _horizontalSpeedBuffAmount;
         _playerMovement.CurrentMoveSpeedVertical -= _verticalSpeedBuffAmount;
         _vfxManager.SetSpeedLineVFX(false);
-        UpdatePlayerRenderers(MOTION_BLUR, 0);
+        UpdatePlayerRenderers(BLUR, _blurAmountOnIdle);
+        _mainCamera.ZoomEffect(_projectionSizeOnIdle, _cameraZoomTransitionDuration);
         Destroy(gameObject);
     }
 }
