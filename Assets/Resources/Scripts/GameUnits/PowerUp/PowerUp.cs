@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public abstract class PowerUp: MonoBehaviour
+public abstract class PowerUp : MonoBehaviour
 {
     protected static PlayerAnimation _playerAnimation;
 
@@ -22,7 +22,7 @@ public abstract class PowerUp: MonoBehaviour
             _onDestroyAvailable = false;
             GetComponent<SpriteRenderer>().enabled = false;
             GetComponent<Collider2D>().enabled = false;
-            Apply(); 
+            Apply();
         }
     }
 
@@ -40,6 +40,71 @@ public abstract class PowerUp: MonoBehaviour
         foreach (Renderer renderer in _playerAnimation.renderers)
         {
             renderer.material.SetFloat(propertyName, newValue);
+        }
+    }
+
+    protected void UpdatePlayerRenderers(string propertyName, float newValue, float duration, bool boomerang)
+    {
+        StartCoroutine(Transition(propertyName, newValue, duration, boomerang));
+    }
+
+    IEnumerator Transition(string propertyName, float endPoint, float transitionDuration, bool boomerang)
+    {
+        if (boomerang)
+        {
+            float elapsedTime = 0;
+            float startPoint = _playerAnimation.renderers[0].material.GetFloat(propertyName);
+
+            // Make transition by using half of the total time
+            while (elapsedTime < transitionDuration / 2)
+            {
+                float currentLerpValue = Mathf.Lerp(startPoint, endPoint, elapsedTime / (transitionDuration / 2));
+                foreach (Renderer renderer in _playerAnimation.renderers)
+                {
+                    renderer.material.SetFloat(propertyName, currentLerpValue);
+                }
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+
+            // Make REVERSE transition by using the other half of the time
+            elapsedTime = 0;
+            while (elapsedTime < transitionDuration / 2)
+            {
+                float currentLerpValue = Mathf.Lerp(endPoint, startPoint, elapsedTime / (transitionDuration / 2));
+                foreach (Renderer renderer in _playerAnimation.renderers)
+                {
+                    renderer.material.SetFloat(propertyName, currentLerpValue);
+                }
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+
+            foreach (Renderer renderer in _playerAnimation.renderers)
+            {
+                renderer.material.SetFloat(propertyName, startPoint);
+            }
+        }
+        else
+        {
+            float elapsedTime = 0;
+            float startPoint = _playerAnimation.renderers[0].material.GetFloat(propertyName);
+
+            while (elapsedTime < transitionDuration)
+            {
+                float currentLerpValue = Mathf.Lerp(startPoint, endPoint, (elapsedTime / transitionDuration));
+                foreach (Renderer renderer in _playerAnimation.renderers)
+                {
+                    renderer.material.SetFloat(propertyName, currentLerpValue);
+                }
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+
+            foreach (Renderer renderer in _playerAnimation.renderers)
+            {
+                renderer.material.SetFloat(propertyName, endPoint);
+            }
         }
     }
 }

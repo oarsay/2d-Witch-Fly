@@ -52,7 +52,7 @@ public class PlayerAnimation : MonoBehaviour
         {
             var main = tailParticleSystem.main;
             var currentColor = main.startColor.color;
-            currentColor.a = 0.012f;
+            currentColor.a = 0.004f;
             main.startColor = currentColor;
         }
     }

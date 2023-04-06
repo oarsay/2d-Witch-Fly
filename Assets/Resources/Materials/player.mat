@@ -12,6 +12,7 @@ Material:
   m_ValidKeywords:
   - BLUR_ON
   - HOLOGRAM_ON
+  - ROUNDWAVEUV_ON
   - SHINE_ON
   m_InvalidKeywords: []
   m_LightmapFlags: 4

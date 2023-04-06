@@ -6,8 +6,9 @@ public class Invisibility : PowerUp
 {
     private PlayerManager _playerManager;
 
-    // Hologram effect property names
+    // Shader effect property names
     private readonly string HOLOGRAM = "_HologramBlend";
+    private readonly string ROUND_WAVE = "_RoundWaveStrength";
     private void Awake()
     {
         var player = GameObject.FindGameObjectWithTag(Tags.PLAYER);
@@ -35,7 +36,8 @@ public class Invisibility : PowerUp
     {
         if (!_playerManager.IsInvisible)
         {
-            UpdatePlayerRenderers(HOLOGRAM, 1);
+            UpdatePlayerRenderers(HOLOGRAM, 1, 0.8f, false);
+            UpdatePlayerRenderers(ROUND_WAVE, 1, 0.4f, true);
             _playerManager.IsInvisible = true;
             _playerAnimation.StartInvisibilityAnimation();
         }
