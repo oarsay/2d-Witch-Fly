@@ -131,11 +131,4 @@ public class ChildMovement : MonoBehaviour
         transform.position += _fallSpeed * Time.deltaTime * fallDirection;
         transform.Rotate(Vector3.forward, _fallRotationSpeed);
     }
-
-    void OnDrawGizmos()
-    {
-        // Draw a yellow sphere at the transform's position
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(new(_targetPositionX, -3f, 0f), 0.3f);
-    }
 }

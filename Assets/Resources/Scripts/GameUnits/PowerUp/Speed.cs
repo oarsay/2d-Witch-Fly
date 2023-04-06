@@ -14,13 +14,13 @@ public class Speed : PowerUp
 
     // Motion blur effect property
     private readonly string BLUR = "_BlurIntensity";
-    private float _blurAmountOnIdle = 0f;
-    private float _blurAmountOnSpeed = 2.2f;
+    private readonly float _blurAmountOnIdle = 0f;
+    private readonly float _blurAmountOnSpeed = 2.2f;
 
     // Camera zoom effect properties
-    private float _projectionSizeOnIdle = 9f;
-    private float _projectionSizeOnSpeed = 10f;
-    private float _cameraZoomTransitionDuration = 0.3f;
+    private readonly float _projectionSizeOnIdle = 9f;
+    private readonly float _projectionSizeOnSpeed = 10f;
+    private readonly float _cameraZoomTransitionDuration = 0.3f;
     private void Awake()
     {
         _mainCamera = GameObject.FindGameObjectWithTag(Tags.CAMERA).GetComponent<CameraZoom>();

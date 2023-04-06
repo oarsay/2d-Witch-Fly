@@ -45,4 +45,26 @@ public class PlayerAnimation : MonoBehaviour
             main.startLifetime = _tailStartLifetimeOnIdle;
         }
     }
+
+    public void StartInvisibilityAnimation()
+    {
+        foreach (ParticleSystem tailParticleSystem in _tailParticleSystems)
+        {
+            var main = tailParticleSystem.main;
+            var currentColor = main.startColor.color;
+            currentColor.a = 0.012f;
+            main.startColor = currentColor;
+        }
+    }
+
+    public void EndInvisibilityAnimation()
+    {
+        foreach (ParticleSystem tailParticleSystem in _tailParticleSystems)
+        {
+            var main = tailParticleSystem.main;
+            var currentColor = main.startColor.color;
+            currentColor.a = 1f;
+            main.startColor = currentColor;
+        }
+    }
 }

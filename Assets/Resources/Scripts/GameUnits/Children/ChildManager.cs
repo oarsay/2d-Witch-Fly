@@ -27,7 +27,7 @@ public class ChildManager : MonoBehaviour
     private static readonly float _sightRange = 6f;
     private static readonly float _fleeDuration = 3f;
     private float _fleeRemainingTime = 0;
-    private WaitForSeconds _refreshHidingDuration = new(3);
+    private readonly WaitForSeconds _refreshHidingDuration = new(3);
 
     public void Awake()
     {
@@ -122,9 +122,9 @@ public class ChildManager : MonoBehaviour
     private void OnHunted()
     {
         _rigidbody.gravityScale = 0;
-        transform.SetParent(_hook);
         transform.position = _hook.position;
-        transform.Rotate(new(0, 0, 90));
+        transform.SetParent(_hook);
+        //transform.Rotate(new(0, 0, 90));
         var sprite = GetComponent<SpriteRenderer>();
         sprite.sortingLayerName = "Foreground";
         sprite.sortingOrder = -1;
