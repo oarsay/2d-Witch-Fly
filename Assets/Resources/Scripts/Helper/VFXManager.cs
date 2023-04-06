@@ -17,6 +17,9 @@ public class VFXManager : MonoBehaviour
     [Header("Emoji VFXs")]
         [SerializeField] private GameObject[] _devilEmojiPrefabs;
         [SerializeField] private GameObject[] _screamEmojiPrefabs;
+    [Header("Power-up VFXs")]
+        [SerializeField] private GameObject _speedPowerupPrefab;
+        [SerializeField] private GameObject _invisibilityPowerupPrefab;
     public void CreateDashEffect(Vector3 startPosition, Vector3 endPosition)
     {
         GameObject dash = Instantiate(_dashPrefab, startPosition, Quaternion.identity);
@@ -86,6 +89,15 @@ public class VFXManager : MonoBehaviour
         int prefabIndex = SelectRandomIndexFromPrefabsArray(_screamEmojiPrefabs.Length);
         var emoji = Instantiate(_screamEmojiPrefabs[prefabIndex], childTransform.position, Quaternion.identity);
         emoji.GetComponent<EmojiFollowTarget>().target = childTransform;
+    }
+
+    public void CreateSpeedPowerupEffect(Vector3 position)
+    {
+        Instantiate(_speedPowerupPrefab, position, Quaternion.identity);
+    }
+    public void CreateInvisibilityPowerupEffect(Vector3 position)
+    {
+        Instantiate(_invisibilityPowerupPrefab, position, Quaternion.identity);
     }
     private int SelectRandomIndexFromPrefabsArray(int length)
     {

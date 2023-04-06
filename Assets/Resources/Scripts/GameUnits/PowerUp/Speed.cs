@@ -34,6 +34,7 @@ public class Speed : PowerUp
     }
     public override void Apply()
     {
+        _vfxManager.CreateSpeedPowerupEffect(transform.position);
         StartCoroutine(ApplyEffect());
     }
     IEnumerator ApplyEffect()

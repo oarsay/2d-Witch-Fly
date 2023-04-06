@@ -5,6 +5,7 @@ using System.Linq;
 public class Invisibility : PowerUp
 {
     private PlayerManager _playerManager;
+    private VFXManager _vfxManager;
 
     // Shader effect property names
     private readonly string HOLOGRAM = "_HologramBlend";
@@ -14,6 +15,7 @@ public class Invisibility : PowerUp
         var player = GameObject.FindGameObjectWithTag(Tags.PLAYER);
         _playerManager = player.GetComponent<PlayerManager>();
         _playerAnimation = player.GetComponent<PlayerAnimation>();
+        _vfxManager = GameObject.Find(Tags.VFX_MANAGER).GetComponent<VFXManager>();
         effectDuration = new WaitForSeconds(10f);
         StartCoroutine(nameof(base.AutoDestroy));
     }
@@ -21,6 +23,7 @@ public class Invisibility : PowerUp
     {
         if(!_playerManager.IsInvisible)
         {
+            _vfxManager.CreateInvisibilityPowerupEffect(transform.position);
             StartCoroutine(ApplyEffect());
         }
     }
