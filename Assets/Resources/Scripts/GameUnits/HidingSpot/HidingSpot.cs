@@ -14,8 +14,8 @@ enum Type
 }
 public class HidingSpot : MonoBehaviour
 {
-    public int duration, amount, vibrato;
-    public Vector3 strength;
+    [HideInInspector] public int duration, amount, vibrato;
+    [HideInInspector] public Vector3 strength;
     
     private VFXManager _vfxManager;
 
@@ -47,7 +47,7 @@ public class HidingSpot : MonoBehaviour
                 break;
 
             case Type.Cross:
-                // ADD GLOW FLASH
+                GetComponentInChildren<Animator>().SetBool("onGlow", true);
                 break;
 
             case Type.Bench:
@@ -67,9 +67,20 @@ public class HidingSpot : MonoBehaviour
 
         // Set child properties
         child.GetComponent<Rigidbody2D>().gravityScale = 0;
-            child.position = new Vector3(transform.position.x, _childYPositionWhileHiding, transform.position.z);
+        child.position = new Vector3(transform.position.x, _childYPositionWhileHiding, transform.position.z);
         
-            // Update hiding spot
-            _isEmpty = false;
+        // Update hiding spot
+        _isEmpty = false;
+    }
+
+    public void Leave()
+    {
+        // Update hiding spot
+        _isEmpty = true;
+
+        if(_type == Type.Cross)
+        {
+            GetComponentInChildren<Animator>().SetBool("onGlow", false);
+        }
     }
 }

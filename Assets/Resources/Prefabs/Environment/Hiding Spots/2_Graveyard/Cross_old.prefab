@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8175719800551122275}
   - component: {fileID: 8546976105583288798}
+  - component: {fileID: 1093320870}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -52,7 +53,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: a0843bd128b05fe4b8fe9cf28209aa91, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -84,6 +85,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!95 &1093320870
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 351705140201594408}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 01e99cab363acc541a585a640856cbf1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &2475105856753441120
 GameObject:
   m_ObjectHideFlags: 0
@@ -130,6 +151,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f02f527b7b8af3c4098fc2e1e4c10630, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  duration: 0
+  amount: 0
+  vibrato: 0
+  strength: {x: 0, y: 0, z: 0}
   _type: 3
 --- !u!61 &8850599195394716473
 BoxCollider2D:
