@@ -201,7 +201,7 @@ Material:
     - _TwistUvPosX: 0.5
     - _TwistUvPosY: 0.5
     - _TwistUvRadius: 0.75
-    - _WaveAmount: 7
+    - _WaveAmount: 0
     - _WaveSpeed: 10
     - _WaveStrength: 7.5
     - _WaveX: 0

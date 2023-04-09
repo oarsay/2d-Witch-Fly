@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 88f54a05447641946b7f2c94ec3d73e4
+guid: fef7391c0664d7146b639108d312c58e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -42,14 +42,14 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 0
-  spritePivot: {x: 0.5, y: 0.5}
+  alignment: 9
+  spritePivot: {x: 0.517109, y: 0.22027059}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteBorder: {x: 90, y: 146, z: 83, w: 92}
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -67,7 +67,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 256
+    maxTextureSize: 128
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -115,62 +115,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: cross_0
-      rect:
-        serializedVersion: 2
-        x: 90
-        y: 257
-        width: 181
-        height: 403
-      alignment: 9
-      pivot: {x: 0.53563565, y: -0.02283173}
-      border: {x: 2, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 28a34c31da4a19249b3843e82c94cc8a
-      internalID: -277565560
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cross_1
-      rect:
-        serializedVersion: 2
-        x: 44
-        y: 5
-        width: 279
-        height: 249
-      alignment: 9
-      pivot: {x: 0.5077064, y: 0.86832935}
-      border: {x: 0, y: 3, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 16f8f150ab58a384fbad2b4404c345b6
-      internalID: -411225212
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 0
+    internalID: 1537655665
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      cross_0: -277565560
-      cross_1: -411225212
+    nameFileIdTable: {}
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
