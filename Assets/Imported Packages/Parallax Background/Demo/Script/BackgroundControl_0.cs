@@ -5,12 +5,26 @@ using UnityEngine;
 public class BackgroundControl_0 : MonoBehaviour
 {
     [Header("BackgroundNum 0 -> 3")]
-    public int backgroundNum;
+    [HideInInspector] public int backgroundNum;
     public Sprite[] Layer_Sprites;
     private GameObject[] Layer_Object = new GameObject[5];
     private int max_backgroundNum = 3;
+    [SerializeField] private GameObject[] _hidingSpots;
     void Start()
     {
+        // SET RANDOM BACKGROUND
+
+        // max_backgroundNum + 1 because integer Range function is exclusive
+        backgroundNum = Random.Range(0, max_backgroundNum + 1);
+
+        // SET CORRESPONDING HIDING SPOTS ACCORDING TO THE BACKGROUND
+        foreach (GameObject _hidingSpot in _hidingSpots)
+        {
+            _hidingSpot.SetActive(false);
+        }
+        _hidingSpots[backgroundNum].SetActive(true);
+
+        // SET BACKGROUND LAYERS
         for (int i = 0; i < Layer_Object.Length; i++){
             Layer_Object[i] = GameObject.Find("Layer_" + i);
         }

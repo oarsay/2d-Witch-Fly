@@ -123,8 +123,9 @@ public class ChildManager : MonoBehaviour
     {
         transform.Rotate(new(0, 0, 90));
         _rigidbody.gravityScale = 0;
-        transform.position = _hook.position;
+        //transform.position = _hook.position;
         transform.SetParent(_hook);
+        transform.localPosition = Vector3.zero;
         var sprite = GetComponent<SpriteRenderer>();
         sprite.sortingLayerName = "Foreground";
         sprite.sortingOrder = -1;

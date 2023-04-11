@@ -132,7 +132,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3998896031563269861, guid: fe61b8c0904ec894c8a49cedc0330e5e, type: 3}
       propertyPath: level
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3998896031563269863, guid: fe61b8c0904ec894c8a49cedc0330e5e, type: 3}
       propertyPath: m_Type
@@ -160,7 +160,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3998896031563269864, guid: fe61b8c0904ec894c8a49cedc0330e5e, type: 3}
       propertyPath: m_Name
-      value: Level:Timed
+      value: Level:Survival
       objectReference: {fileID: 0}
     - target: {fileID: 3998896031563269865, guid: fe61b8c0904ec894c8a49cedc0330e5e, type: 3}
       propertyPath: m_Pivot.x
@@ -324,7 +324,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3998896031563269861, guid: fe61b8c0904ec894c8a49cedc0330e5e, type: 3}
       propertyPath: level
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3998896031563269863, guid: fe61b8c0904ec894c8a49cedc0330e5e, type: 3}
       propertyPath: m_Type
@@ -352,7 +352,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3998896031563269864, guid: fe61b8c0904ec894c8a49cedc0330e5e, type: 3}
       propertyPath: m_Name
-      value: Level:Time-free
+      value: Level:Endless
       objectReference: {fileID: 0}
     - target: {fileID: 3998896031563269865, guid: fe61b8c0904ec894c8a49cedc0330e5e, type: 3}
       propertyPath: m_Pivot.x
