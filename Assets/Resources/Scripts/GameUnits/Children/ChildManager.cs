@@ -121,7 +121,7 @@ public class ChildManager : MonoBehaviour
 
     private void OnHunted()
     {
-        transform.Rotate(new(0, 0, 90));
+        //transform.Rotate(new(0, 0, 180));
         _rigidbody.gravityScale = 0;
         //transform.position = _hook.position;
         transform.SetParent(_hook);
