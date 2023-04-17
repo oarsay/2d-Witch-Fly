@@ -13,13 +13,16 @@ public class TimerManager : MonoBehaviour
     private string _floatingTextAnimationStateName = "FloatingText";
 
     [Header("Timer Settings")]
-    [SerializeField] private float _currentTime;
-    [SerializeField] private float _timerMinValue;
-    [SerializeField] private float _timerMaxValue;
+    [SerializeField] private int _currentTime;
+    [SerializeField] private int _timerMinValue;
+    [SerializeField] private int _timerMaxValue;
 
-    private readonly float _timeRewardPerChild = 15f;
+    private readonly int _timeRewardPerChild = 15;
     public float TimeRewardPerChild { get { return _timeRewardPerChild; } }
     private readonly WaitForSeconds _timeUpdateDelay = new(1f);
+
+    // Number counting animation
+    private float _countDuration = 0.5f;
     private void Start()
     {
         StartCoroutine(UpdateTimer());
@@ -47,14 +50,25 @@ public class TimerManager : MonoBehaviour
     // Called by game event
     public void AddExtraTimeForChild()
     {
-        _currentTime += _timeRewardPerChild;
+        StartCoroutine(CountingAnimation(_currentTime + _timeRewardPerChild));
         if (_currentTime > _timerMaxValue) _currentTime = _timerMaxValue;
-        UpdateTimerUI();
         SpawnFloatingText();
     }
 
     private void SpawnFloatingText()
     {
         _timeRewardImage.GetComponent<Animator>().Play(_floatingTextAnimationStateName);
+    }
+
+    IEnumerator CountingAnimation(int target)
+    {
+        if (target > _timerMaxValue) target = _timerMaxValue;
+
+        while(_currentTime < target)
+        {
+            _currentTime = (int)Mathf.MoveTowards(_currentTime, target, 1);
+            UpdateTimerUI();
+            yield return null;
+        }
     }
 }
