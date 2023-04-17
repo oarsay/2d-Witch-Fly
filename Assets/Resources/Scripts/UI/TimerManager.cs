@@ -21,8 +21,6 @@ public class TimerManager : MonoBehaviour
     public float TimeRewardPerChild { get { return _timeRewardPerChild; } }
     private readonly WaitForSeconds _timeUpdateDelay = new(1f);
 
-    // Number counting animation
-    private float _countDuration = 0.5f;
     private void Start()
     {
         StartCoroutine(UpdateTimer());

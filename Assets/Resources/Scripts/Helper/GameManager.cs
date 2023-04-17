@@ -25,6 +25,7 @@ public class GameManager: MonoBehaviour
     private void Awake()
     {
         _instance = this;
+        Time.timeScale = 1;
     }
 
     public void ChangeGameState(GameState newState)

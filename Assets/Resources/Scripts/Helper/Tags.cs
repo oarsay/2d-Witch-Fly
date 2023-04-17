@@ -39,4 +39,9 @@ public static class Tags
     // Address
     public const string CHILDREN_PREFABS_LOCATION = "Prefabs/Children";
     public const string POWERUP_PREFABS_LOCATION = "Prefabs/Environment/Power-Ups";
+
+    // ===== SCENE INDEXES =====
+    public const int MENU_SCENE = 0;
+    public const int GAME_SCENE_SURVIVAL_MODE = 1;
+    public const int GAME_SCENE_ENDLESS_MODE = 2;
 }

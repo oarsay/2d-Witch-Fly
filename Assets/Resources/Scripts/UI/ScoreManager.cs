@@ -5,7 +5,7 @@ public class ScoreManager : MonoBehaviour
 {
     [Header("Components")]
     [SerializeField] private TextMeshProUGUI _scoreText;
-    [SerializeField] private TextMeshProUGUI _scoreRewardText;
+    [SerializeField] private Transform _scoreRewardImage;
     [SerializeField] private TextMeshProUGUI _gameOverScoreText;
     private readonly string _floatingTextAnimationStateName = "FloatingText";
 
@@ -34,7 +34,7 @@ public class ScoreManager : MonoBehaviour
 
     private void SpawnFloatingText()
     {
-        _scoreRewardText.GetComponent<Animator>().Play(_floatingTextAnimationStateName);
+        _scoreRewardImage.GetComponent<Animator>().Play(_floatingTextAnimationStateName);
     }
 
     //Called by event listener
