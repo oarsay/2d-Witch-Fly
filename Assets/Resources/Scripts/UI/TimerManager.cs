@@ -9,7 +9,7 @@ public class TimerManager : MonoBehaviour
 
     [Header("Component")]
     [SerializeField] private TextMeshProUGUI _timerText;
-    [SerializeField] private TextMeshProUGUI _timeRewardText;
+    [SerializeField] private Transform _timeRewardImage;
     private string _floatingTextAnimationStateName = "FloatingText";
 
     [Header("Timer Settings")]
@@ -22,7 +22,6 @@ public class TimerManager : MonoBehaviour
     private readonly WaitForSeconds _timeUpdateDelay = new(1f);
     private void Start()
     {
-        _timeRewardText.text = "+" + (int)_timeRewardPerChild + " s";
         StartCoroutine(UpdateTimer());
     }
 
@@ -56,6 +55,6 @@ public class TimerManager : MonoBehaviour
 
     private void SpawnFloatingText()
     {
-        _timeRewardText.GetComponent<Animator>().Play(_floatingTextAnimationStateName);
+        _timeRewardImage.GetComponent<Animator>().Play(_floatingTextAnimationStateName);
     }
 }
