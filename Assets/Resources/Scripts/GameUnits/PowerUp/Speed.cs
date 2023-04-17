@@ -18,8 +18,8 @@ public class Speed : PowerUp
     private readonly float _blurAmountOnSpeed = 2.2f;
 
     // Camera zoom effect properties
-    private readonly float _projectionSizeOnIdle = 9f;
-    private readonly float _projectionSizeOnSpeed = 10f;
+    private readonly float _projectionSizeOnIdle = 8f;
+    private readonly float _projectionSizeOnSpeed = 9f;
     private readonly float _cameraZoomTransitionDuration = 0.3f;
     private void Awake()
     {

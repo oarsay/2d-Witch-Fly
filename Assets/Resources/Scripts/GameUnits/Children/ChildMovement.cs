@@ -14,7 +14,7 @@ public class ChildMovement : MonoBehaviour
     private static readonly float _maxWalkSpeed = 3f;
     private static readonly float _fleeSpeedBonus = 1.5f;
     private static readonly float _fallSpeed = 4f;
-    private static readonly float _fallRotationSpeed = 1.5f;
+    private static readonly float _fallRotationSpeed = 90f;
 
     [HideInInspector] public ChildDirection childDirection;
     private float _walkSpeed;
@@ -129,6 +129,6 @@ public class ChildMovement : MonoBehaviour
     {
         Vector3 fallDirection = (_cauldronDeepPoint.position - transform.position).normalized;
         transform.position += _fallSpeed * Time.deltaTime * fallDirection;
-        transform.Rotate(Vector3.forward, _fallRotationSpeed);
+        transform.Rotate(Vector3.forward, _fallRotationSpeed * Time.deltaTime);
     }
 }

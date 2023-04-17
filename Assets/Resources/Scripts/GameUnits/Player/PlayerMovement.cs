@@ -121,14 +121,14 @@ public class PlayerMovement : MonoBehaviour
         {
             if (_model.transform.localEulerAngles.z > 4)
             {
-                _model.transform.Rotate(Vector3.forward, -1);
+                _model.transform.Rotate(Vector3.forward, -60 * Time.deltaTime);
             }
         }
         else if (_directionVertical == Direction.Down)
         {
             if (_model.transform.localEulerAngles.z < 24)
             {
-                _model.transform.Rotate(Vector3.forward, 1);
+                _model.transform.Rotate(Vector3.forward, 60 * Time.deltaTime);
             }
         }
     }

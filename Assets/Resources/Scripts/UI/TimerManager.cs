@@ -14,7 +14,8 @@ public class TimerManager : MonoBehaviour
 
     [Header("Timer Settings")]
     [SerializeField] private float _currentTime;
-    [SerializeField] private float _timerLimit;
+    [SerializeField] private float _timerMinValue;
+    [SerializeField] private float _timerMaxValue;
 
     private readonly float _timeRewardPerChild = 15f;
     public float TimeRewardPerChild { get { return _timeRewardPerChild; } }
@@ -27,7 +28,7 @@ public class TimerManager : MonoBehaviour
 
     IEnumerator UpdateTimer()
     {
-        while(_currentTime > _timerLimit)
+        while(_currentTime > _timerMinValue)
         {
             UpdateTimerUI();
             yield return _timeUpdateDelay;
@@ -48,6 +49,7 @@ public class TimerManager : MonoBehaviour
     public void AddExtraTimeForChild()
     {
         _currentTime += _timeRewardPerChild;
+        if (_currentTime > _timerMaxValue) _currentTime = _timerMaxValue;
         UpdateTimerUI();
         SpawnFloatingText();
     }

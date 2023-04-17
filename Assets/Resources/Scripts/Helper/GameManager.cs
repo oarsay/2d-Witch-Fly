@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class GameManager: MonoBehaviour
 {
+    [SerializeField] private GameObject GameOverPanel;
+
     private static GameManager _instance;
     public static GameManager Instance
     {
@@ -48,6 +50,7 @@ public class GameManager: MonoBehaviour
     private void HandleEnd()
     {
         Time.timeScale = 0;
+        GameOverPanel.SetActive(true);
     }
     public void OnGameOver()
     {
