@@ -23,6 +23,7 @@ public abstract class PowerUp : MonoBehaviour
             GetComponent<SpriteRenderer>().enabled = false;
             GetComponent<Collider2D>().enabled = false;
             GetComponentInChildren<ParticleSystem>().Stop();
+            AudioManager.Instance.PlaySoundWithName(Tags.POWER_UP_SFX);
             Apply();
         }
     }

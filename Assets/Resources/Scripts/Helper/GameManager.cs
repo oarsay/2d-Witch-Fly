@@ -56,5 +56,6 @@ public class GameManager: MonoBehaviour
     public void OnGameOver()
     {
         ChangeGameState(GameState.End);
+        AudioManager.Instance.PlaySoundWithName(Tags.GAME_OVER_SFX);
     }
 }

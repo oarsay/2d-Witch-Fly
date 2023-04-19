@@ -43,6 +43,10 @@ public class TimerManager : MonoBehaviour
     private void UpdateTimerUI()
     {
         _timerText.text = _currentTime.ToString("0");
+        if(_currentTime < 10)
+        {
+            AudioManager.Instance.PlayClockSound();
+        }
     }
 
     // Called by game event

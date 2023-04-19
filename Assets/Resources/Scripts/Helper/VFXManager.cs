@@ -32,6 +32,9 @@ public class VFXManager : MonoBehaviour
         {
             dash.transform.localEulerAngles = new Vector3(0, 0, 180 - angleZ);
         }
+
+        float volume = Volume2D.GetVolumeValueAccordingToDistance(startPosition, 1, 8);
+        AudioManager.Instance.PlaySoundWithName(Tags.CHILD_DASH_SFX, volume);
     }
 
     public void CreateLeafEffect(Vector3 startPosition)
@@ -76,6 +79,7 @@ public class VFXManager : MonoBehaviour
     public void CreateSplashEffect()
     {
         Instantiate(_splashPrefab);
+        AudioManager.Instance.PlayWaterSound();
     }
 
     public void CreateDevilEmoji(Transform witchTransform)

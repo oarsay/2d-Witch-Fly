@@ -14,6 +14,7 @@ public class PlayerManager : MonoBehaviour
     public void OnHuntedAChild()
     {
         IsHookEmpty = false;
+        AudioManager.Instance.PlayLaughSound();
     }
     public void OnChildFall()
     {

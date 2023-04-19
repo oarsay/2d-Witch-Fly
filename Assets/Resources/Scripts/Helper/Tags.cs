@@ -44,4 +44,11 @@ public static class Tags
     public const int MENU_SCENE = 0;
     public const int GAME_SCENE_SURVIVAL_MODE = 1;
     public const int GAME_SCENE_ENDLESS_MODE = 2;
+
+    // ===== AUDIO CLIPS =====
+    public const string BUBBLING_SFX = "Bubbling";
+    public const string FIRE_SFX = "Fire";
+    public const string GAME_OVER_SFX = "GameOver";
+    public const string CHILD_DASH_SFX = "Whoosh";
+    public const string POWER_UP_SFX = "Powerup";
 }
