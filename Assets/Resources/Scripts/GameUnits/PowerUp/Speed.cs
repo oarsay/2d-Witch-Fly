@@ -35,6 +35,7 @@ public class Speed : PowerUp
     public override void Apply()
     {
         _vfxManager.CreateSpeedPowerupEffect(transform.position);
+        AudioManager.Instance.PlaySoundWithName(Tags.POWER_UP_SPEED_SFX);
         StartCoroutine(ApplyEffect());
     }
     IEnumerator ApplyEffect()

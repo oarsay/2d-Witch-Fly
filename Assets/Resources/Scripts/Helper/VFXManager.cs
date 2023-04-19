@@ -33,7 +33,7 @@ public class VFXManager : MonoBehaviour
             dash.transform.localEulerAngles = new Vector3(0, 0, 180 - angleZ);
         }
 
-        float volume = Volume2D.GetVolumeValueAccordingToDistance(startPosition, 1, 8);
+        float volume = Volume2D.GetVolumeValueAccordingToDistance(startPosition, 1, 12);
         AudioManager.Instance.PlaySoundWithName(Tags.CHILD_DASH_SFX, volume);
     }
 

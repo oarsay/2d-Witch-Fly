@@ -24,6 +24,7 @@ public class Invisibility : PowerUp
         if(!_playerManager.IsInvisible)
         {
             _vfxManager.CreateInvisibilityPowerupEffect(transform.position);
+            AudioManager.Instance.PlaySoundWithName(Tags.POWER_UP_INVISIBILITY_SFX);
             StartCoroutine(ApplyEffect());
         }
     }

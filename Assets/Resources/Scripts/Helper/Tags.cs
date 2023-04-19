@@ -50,5 +50,6 @@ public static class Tags
     public const string FIRE_SFX = "Fire";
     public const string GAME_OVER_SFX = "GameOver";
     public const string CHILD_DASH_SFX = "Whoosh";
-    public const string POWER_UP_SFX = "Powerup";
+    public const string POWER_UP_INVISIBILITY_SFX = "Powerup_Invisibility";
+    public const string POWER_UP_SPEED_SFX = "Powerup_Speed";
 }
